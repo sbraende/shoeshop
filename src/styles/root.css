@@ -1,0 +1,13 @@
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  padding: 0 var(--spacing-small);
+  font-family: sans-serif;
+  background-color: var(--color-light-gray);
+  color: var(--color-primary-text);
+}

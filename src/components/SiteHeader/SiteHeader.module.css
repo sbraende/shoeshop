@@ -1,0 +1,32 @@
+.siteHeader {
+  width: 100%;
+  max-width: 800px;
+  padding: var(--spacing-medium) 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.columnLeft {
+  justify-self: left;
+}
+
+.columnCenter {
+  justify-self: center;
+  font-size: var(--font-size-base);
+}
+
+.nav {
+  display: flex;
+  gap: var(--spacing-medium);
+}
+
+.columnRight {
+  justify-self: right;
+  display: flex;
+  gap: var(--spacing-small);
+}
+
+.icon {
+  width: 32px;
+}
