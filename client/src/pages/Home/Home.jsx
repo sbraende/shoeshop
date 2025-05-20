@@ -1,5 +1,6 @@
 import styles from "./Home.module.css";
 import Search from "../../components/Search/Search";
+import { useEffect } from "react";
 
 const Home = () => {
   // console.log(database);
@@ -45,15 +46,30 @@ const Home = () => {
   // };
   // testAI();
 
-  // const connectToBackend = async () => {
-  //   const request = await fetch("http://localhost:3001/");
-  //   const data = await request.json();
-  //   console.log(data);
-  // };
+  const connectToBackend = async () => {
+    const request = await fetch("http://localhost:3001/");
+    const data = await request.json();
+    console.log(data);
+  };
+  const postRequest = async () => {
+    try {
+      const request = await fetch("http://localhost:3001/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "Message from Frontend" }),
+      });
+      const data = await request.json();
+      console.log(data);
+    } catch (error) {
+      console.log("Could not connect to backend", error.message);
+      alert("Could not connect to backend, please contact admin");
+    }
+  };
 
-  // useEffect(() => {
-  //   connectToBackend();
-  // }, []);
+  useEffect(() => {
+    // connectToBackend();
+    postRequest();
+  }, []);
 
   return (
     <div className={styles.home}>

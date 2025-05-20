@@ -6,6 +6,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const PORT = 3001;
 
@@ -22,12 +23,24 @@ const geminiConfig = {
   apiKey: process.env.GEMINI_API_KEY,
 };
 
-app.get("/", async (req, res) => {
+// app.get("/", async (req, res) => {
+//   try {
+//     // const response = await fetch();
+//     const data = {
+//       message: "Hi there from backend! Nodemon installed and working",
+//       apiKey: process.env.GEMINI_API_KEY,
+//     };
+//     res.json(data);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
+
+app.post("/", async (req, res) => {
   try {
-    // const response = await fetch();
     const data = {
       message: "Hi there from backend! Nodemon installed and working",
-      apiKey: process.env.GEMINI_API_KEY,
+      FEMessage: req.body,
     };
     res.json(data);
   } catch (error) {
