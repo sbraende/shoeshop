@@ -5,6 +5,7 @@
 
   --color-light-gray: #f7f7f6;
   --color-medium-gray: #ededed;
+  --color-mediumDark-gray: #c6c6c6;
   --color-dark-gray: #333333;
 
   --color-gradient-ramp1-solid: #20a6e6;
@@ -19,6 +20,7 @@
   --color-gradient-color3: #ff8a5c;
 
   /* Spacing */
+  --spacing-xx-small: 0.25rem;
   --spacing-x-small: 0.5rem;
   --spacing-small: 0.75rem;
   --spacing-medium: 1rem;

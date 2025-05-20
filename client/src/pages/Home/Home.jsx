@@ -1,6 +1,7 @@
 import styles from "./Home.module.css";
 import Search from "../../components/Search/Search";
 import { useEffect } from "react";
+import ProductList from "../../components/ProductList/ProductList";
 
 const Home = () => {
   // console.log(database);
@@ -73,11 +74,12 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <section className={styles.sectionSearch}>
+      <section className={`${styles.section} ${styles.sectionSearch}`}>
         <Search />
       </section>
-      <section className={styles.sectionPopularNow}>
-        <h2>POPULAR NOW</h2>
+      <section className={`${styles.section} ${styles.sectionPopularNow}`}>
+        <h2 className={styles.sectionHeader}>POPULAR NOW</h2>
+        <ProductList />
       </section>
     </div>
   );
