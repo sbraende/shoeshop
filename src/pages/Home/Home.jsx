@@ -1,10 +1,11 @@
-import { database } from "../../../firebase.config";
+import { database } from "../../../server/firebase.config";
 import styles from "./Home.module.css";
 import { addDoc, collection } from "firebase/firestore";
-import { ai } from "../../../gemini.config";
+import { ai } from "../../../server/gemini.config";
 import shoeList from "../../data/shoeData";
 import { Type } from "@google/genai";
 import Search from "../../components/Search/Search";
+import { useEffect } from "react";
 
 const Home = () => {
   // console.log(database);
@@ -49,6 +50,16 @@ const Home = () => {
     console.log(responseData);
   };
   // testAI();
+
+  const connectToBackend = async () => {
+    const request = await fetch("http://localhost:3001/");
+    const data = await request.json();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    connectToBackend();
+  }, []);
 
   return (
     <div className={styles.home}>
