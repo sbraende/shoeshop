@@ -7,6 +7,20 @@
   align-items: center;
 }
 
+.navLink {
+  color: var(--color-primary-back);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.navLinkLogo:hover {
+  text-decoration: none;
+}
+
 .columnLeft {
   justify-self: left;
 }

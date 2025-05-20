@@ -3,7 +3,9 @@
   --color-primary-white: #fff;
   --color-primary-back: #171717;
 
-  --color-light-gray: F7F7F6;
+  --color-light-gray: #f7f7f6;
+  --color-medium-gray: #ededed;
+  --color-dark-gray: #333333;
 
   --color-gradient-ramp1-solid: #20a6e6;
   --color-gradient-ramp1: linear-gradient(

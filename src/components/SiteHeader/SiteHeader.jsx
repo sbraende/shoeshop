@@ -4,15 +4,17 @@ import styles from "./SiteHeader.module.css";
 const SiteHeader = () => {
   return (
     <header className={styles.siteHeader}>
-      <NavLink className={styles.columnLeft}>
-        <h1>SHOE</h1>
-        <h1>ITCH</h1>
-      </NavLink>
+      <div className={styles.columnLeft}>
+        <NavLink className={`${styles.navLink} ${styles.navLinkLogo}`}>
+          <h1>SHOE</h1>
+          <h1>ITCH</h1>
+        </NavLink>
+      </div>
       <div className={styles.columnCenter}>
         <nav className={styles.nav}>
-          <NavLink>SHOES</NavLink>
-          <NavLink>CLOTHING</NavLink>
-          <NavLink>ACCESSORIES</NavLink>
+          <NavLink className={styles.navLink}>SHOES</NavLink>
+          <NavLink className={styles.navLink}>CLOTHING</NavLink>
+          <NavLink className={styles.navLink}>ACCESSORIES</NavLink>
         </nav>
       </div>
       <div className={styles.columnRight}>
