@@ -1,4 +1,4 @@
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCard from "../ProductCard/ProductCard.jsx";
 import styles from "./ProductList.module.css";
 import shoeList from "../../data/shoeData.js";
 

@@ -7,7 +7,6 @@ const SiteHeader = () => {
       <div className={styles.columnLeft}>
         <NavLink className={`${styles.navLink} ${styles.navLinkLogo}`}>
           <h1>SHOE</h1>
-          <h1>ITCH</h1>
         </NavLink>
       </div>
       <div className={styles.columnCenter}>
