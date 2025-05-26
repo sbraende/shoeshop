@@ -1,10 +1,22 @@
+import { useNavigate } from "react-router";
 import styles from "./Search.module.css";
+import { useState } from "react";
 
 const Search = () => {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!query.trim()) return;
+
+    navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+  };
+
   return (
-    <form>
+    <form role="search" onSubmit={handleSubmit}>
       <div className={styles.search}>
-        <img className={styles.icon} src="/icons/search.svg" alt="Search" />
         <input
           className={styles.input}
           type="search"
@@ -14,7 +26,11 @@ const Search = () => {
           maxLength={120}
           autoComplete="off"
           autoCorrect="off"
+          onChange={(e) => setQuery(e.target.value)}
         />
+        <button type="submit" className={styles.searchButton}>
+          <img className={styles.icon} src="/icons/search.svg" alt="Search" />
+        </button>
       </div>
     </form>
   );
