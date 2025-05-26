@@ -1,6 +1,5 @@
 import styles from "./Home.module.css";
 import Search from "../../components/Search/Search";
-import { useEffect } from "react";
 import ProductList from "../../components/ProductList/ProductList";
 
 const Home = () => {
