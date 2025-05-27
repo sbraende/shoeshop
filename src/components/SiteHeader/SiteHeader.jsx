@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from "./SiteHeader.module.css";
 import Search from "../Search/Search";
+import { getUserContext } from "../../context/userDataContext";
 
 const SiteHeader = () => {
+  const userData = getUserContext();
+
   return (
     <header className={styles.siteHeader}>
       <div className={styles.logoContainer}>
@@ -14,13 +17,24 @@ const SiteHeader = () => {
         <Search />
       </div>
       <div className={styles.navigationItemsContainer}>
-        <Link to={"/signin"}>
-          <img
-            className={styles.icon}
-            src="/icons/profile-circle.svg"
-            alt="Profile"
-          />
-        </Link>
+        {userData ? (
+          <Link to={"/profile"}>
+            <img
+              className={styles.icon}
+              src="/icons/profile-circle.svg"
+              alt="Profile"
+            />
+          </Link>
+        ) : (
+          <Link to={"/signin"}>
+            <img
+              className={styles.icon}
+              src="/icons/profile-circle.svg"
+              alt="Profile"
+            />
+          </Link>
+        )}
+
         <Link>
           <img
             className={styles.icon}

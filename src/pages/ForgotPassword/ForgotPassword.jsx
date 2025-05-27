@@ -54,7 +54,11 @@ const ForgotPassword = () => {
             />
           </div>
         </fieldset>
-        <button type="submit" className={formStyles.submitButton}>
+        <button
+          type="submit"
+          className={formStyles.submitButton}
+          disabled={isResetEmailSent}
+        >
           Continue
         </button>
         {isResetEmailSent && (

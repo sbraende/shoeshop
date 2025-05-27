@@ -22,7 +22,7 @@ const Search = () => {
           type="search"
           name="search"
           id="search"
-          placeholder="try 'Shoes for hiking in the mountains'"
+          placeholder="Try our AI Search: e.g. 'Shoes for hiking in the mountains'"
           maxLength={120}
           autoComplete="off"
           autoCorrect="off"

@@ -70,3 +70,8 @@
   background-color: var(--color-gradient-color1);
   border-radius: var(--border-radius-medium);
 }
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+}
