@@ -1,10 +1,13 @@
-import { useState } from "react";
 import styles from "./Signup.module.css";
+import formStyles from "../../styles/FormStyles.Module.css";
+
+import { useState } from "react";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../../../auth.config";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../../firestore.config";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import RequiredField from "../../components/RequiredField/RequiredField";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -66,11 +69,13 @@ const Signup = () => {
   };
 
   return (
-    <div className={styles.signup}>
-      <h2 className={styles.title}>Sign Up</h2>
-      <form onSubmit={handleSignup} noValidate className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="firstName">First name</label>
+    <div className={formStyles.formContainer}>
+      <form onSubmit={handleSignup} noValidate className={formStyles.form}>
+        <h2 className={formStyles.title}>Sign Up</h2>
+        <div className={formStyles.formGroup}>
+          <label htmlFor="firstName">
+            First name <RequiredField />
+          </label>
           <input
             type="text"
             name="firstName"
@@ -80,8 +85,10 @@ const Signup = () => {
             value={singupData.firstName}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="lastName">Last Name</label>
+        <div className={formStyles.formGroup}>
+          <label htmlFor="lastName">
+            Last Name <RequiredField />
+          </label>
           <input
             type="text"
             name="lastName"
@@ -91,8 +98,10 @@ const Signup = () => {
             value={singupData.lastName}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
+        <div className={formStyles.formGroup}>
+          <label htmlFor="email">
+            Email <RequiredField />
+          </label>
           <input
             type="email"
             name="email"
@@ -102,8 +111,10 @@ const Signup = () => {
             value={singupData.email}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Password</label>
+        <div className={formStyles.formGroup}>
+          <label htmlFor="password">
+            Password <RequiredField />
+          </label>
           <input
             type="password"
             name="password"
@@ -113,8 +124,10 @@ const Signup = () => {
             value={singupData.password}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="confirmPassword">Confirm password</label>
+        <div className={formStyles.formGroup}>
+          <label htmlFor="confirmPassword">
+            Confirm password <RequiredField />
+          </label>
           <input
             type="password"
             name="confirmPassword"
@@ -124,12 +137,14 @@ const Signup = () => {
             value={singupData.confirmPassword}
           />
         </div>
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className={formStyles.submitButton}>
           Create account
         </button>
+        <Link className={formStyles.link} to={"/signin"}>
+          Back to login
+        </Link>
       </form>
     </div>
   );
 };
-
 export default Signup;

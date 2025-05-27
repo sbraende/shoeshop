@@ -1,0 +1,72 @@
+.formContainer {
+  width: 100%;
+  padding: 0 var(--spacing-medium);
+  max-width: var(--layout-primary-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-medium);
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-large);
+  border-radius: var(--border-radius-large);
+  background-color: var(--color-primary-white);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.fieldset {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.formGroup {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xx-small);
+}
+
+.formGroup label {
+  font-weight: 600;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: var(--spacing-x-small) var(--spacing-small);
+}
+
+.requiredField {
+  color: var(--color-primary-red);
+}
+
+.confirmMessage {
+  color: var(--color-primary-green);
+}
+
+.link {
+  color: var(--color-primary-back);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.submitButton {
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  padding: var(--spacing-small) var(--spacing-medium);
+  background-color: var(--color-gradient-color1);
+  border-radius: var(--border-radius-medium);
+}

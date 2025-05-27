@@ -1,8 +1,10 @@
 import styles from "./Signin.module.css";
+import formStyles from "../../styles/FormStyles.Module.css";
 import { useState } from "react";
 import { auth } from "../../../auth.config";
 import { Link, useNavigate } from "react-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import RequiredField from "../../components/RequiredField/RequiredField";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -36,16 +38,13 @@ const Signin = () => {
   };
 
   return (
-    <div className={styles.signin}>
-      <form onSubmit={handleSignin} noValidate className={styles.form}>
-        <h2 className={styles.title}>Sign in</h2>
-        <fieldset className={styles.fieldset}>
-          <div className={styles.formGroup}>
+    <div className={formStyles.formContainer}>
+      <form onSubmit={handleSignin} noValidate className={formStyles.form}>
+        <h2 className={formStyles.title}>Sign in</h2>
+        <fieldset className={formStyles.fieldset}>
+          <div className={formStyles.formGroup}>
             <label htmlFor="email">
-              Email address{" "}
-              <span className={styles.requiredField} aria-hidden="true">
-                *
-              </span>
+              Email address <RequiredField />
             </label>
             <input
               type="email"
@@ -56,12 +55,9 @@ const Signin = () => {
               // value={singupData.firstName}
             />
           </div>
-          <div className={styles.formGroup}>
+          <div className={formStyles.formGroup}>
             <label htmlFor="password">
-              Password{" "}
-              <span className={styles.requiredField} aria-hidden="true">
-                *
-              </span>
+              Password <RequiredField />
             </label>
             <input
               type="password"
@@ -73,11 +69,16 @@ const Signin = () => {
             />
           </div>
         </fieldset>
-        <Link>Forgot your password?</Link>
+        <Link className={formStyles.link} to={"/forgotPassword"}>
+          Forgot your password?
+        </Link>
         <p>
-          Not a member? <Link to={"/signup"}>Sign up</Link>
+          Not a member?{" "}
+          <Link className={formStyles.link} to={"/signup"}>
+            Sign up
+          </Link>
         </p>
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className={formStyles.submitButton}>
           Sign in
         </button>
       </form>
