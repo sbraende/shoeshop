@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./SiteHeader.module.css";
 import Search from "../Search/Search";
 
@@ -7,20 +7,28 @@ const SiteHeader = () => {
     <header className={styles.siteHeader}>
       <div className={styles.upperRow}>
         <div className={styles.columnLeft}>
-          <NavLink className={styles.navLinkLogo}>
-            <h1>SHOE</h1>
-          </NavLink>
+          <Link className={styles.logoContainer} to={"/"}>
+            <img className={styles.logo} src="/logo/stride-labs-logo.png" />
+          </Link>
         </div>
         <div className={styles.columnCenter}>
           <Search />
         </div>
         <div className={styles.columnRight}>
-          <button>
-            <img className={styles.icon} src="/icons/cart.svg" alt="Profile" />
-          </button>
-          <button>
-            <img className={styles.icon} src="/icons/user.svg" alt="Cart" />
-          </button>
+          <Link to={"/signin"}>
+            <img
+              className={styles.icon}
+              src="/icons/profile-circle.svg"
+              alt="Profile"
+            />
+          </Link>
+          <Link>
+            <img
+              className={styles.icon}
+              src="/icons/shopping-bag.svg"
+              alt="Cart"
+            />
+          </Link>
         </div>
       </div>
       <div className={styles.lowerRow}>

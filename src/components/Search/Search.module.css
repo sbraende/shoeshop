@@ -1,10 +1,7 @@
 .search {
-  width: 100%;
-  min-width: 250px;
   border: 2px solid var(--color-gradient-ramp1-solid);
   border-radius: var(--border-radius-large);
   background-color: var(--color-light-gray);
-  transition: background-color 0.25s;
   overflow: hidden;
   display: flex;
 }
@@ -15,17 +12,13 @@
 
 .input {
   padding: var(--spacing-x-small) var(--spacing-medium);
+  resize: none;
   font-size: var(--font-size-base);
-  color: var(--color-dark-gray);
   border: 0;
+  color: var(--color-dark-gray);
   background-color: var(--color-light-gray);
   flex: 1;
   outline: none;
-  transition: background-color 0.25s;
-}
-
-input:focus {
-  background-color: var(--color-medium-gray);
 }
 
 .input::placeholder {
@@ -34,10 +27,9 @@ input:focus {
 
 .searchButton {
   width: 40px;
-  background-color: var(--color-gradient-color1);
+  background-color: var(--color-medium-gray);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.25s;
 }

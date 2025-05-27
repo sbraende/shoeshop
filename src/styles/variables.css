@@ -8,6 +8,9 @@
   --color-mediumDark-gray: #c6c6c6;
   --color-dark-gray: #333333;
 
+  --color-primary-green: #45da45;
+  --color-primary-red: #f14b55;
+
   --color-gradient-ramp1-solid: #20a6e6;
   --color-gradient-ramp1: linear-gradient(
     135deg,

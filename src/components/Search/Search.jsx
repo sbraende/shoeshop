@@ -16,13 +16,13 @@ const Search = () => {
 
   return (
     <form role="search" onSubmit={handleSubmit}>
-      <div className={styles.search}>
-        <input
+      <search className={styles.search}>
+        <textarea
           className={styles.input}
           type="search"
           name="search"
           id="search"
-          placeholder="AI Search, try - 'Shoes for hiking in the mountains'"
+          placeholder="try 'Shoes for hiking in the mountains'"
           maxLength={120}
           autoComplete="off"
           autoCorrect="off"
@@ -31,7 +31,7 @@ const Search = () => {
         <button type="submit" className={styles.searchButton}>
           <img className={styles.icon} src="/icons/search.svg" alt="Search" />
         </button>
-      </div>
+      </search>
     </form>
   );
 };
