@@ -1,16 +1,19 @@
 .search {
+  width: 100%;
+}
+
+.form {
+  width: 100%;
   border: 2px solid var(--color-gradient-ramp1-solid);
   border-radius: var(--border-radius-large);
   background-color: var(--color-light-gray);
   overflow: hidden;
   display: flex;
-}
-
-.search:focus-within {
-  background-color: var(--color-medium-gray);
+  align-items: center;
 }
 
 .input {
+  width: 100%;
   padding: var(--spacing-x-small) var(--spacing-medium);
   resize: none;
   font-size: var(--font-size-base);
@@ -27,8 +30,11 @@
 
 .searchButton {
   width: 40px;
+  height: 40px;
+  margin: var(--spacing-small);
   background-color: var(--color-medium-gray);
   border: none;
+  border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;

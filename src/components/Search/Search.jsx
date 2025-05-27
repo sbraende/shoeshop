@@ -15,8 +15,8 @@ const Search = () => {
   };
 
   return (
-    <form role="search" onSubmit={handleSubmit}>
-      <search className={styles.search}>
+    <search className={styles.search}>
+      <form role="search" onSubmit={handleSubmit} className={styles.form}>
         <textarea
           className={styles.input}
           type="search"
@@ -31,8 +31,8 @@ const Search = () => {
         <button type="submit" className={styles.searchButton}>
           <img className={styles.icon} src="/icons/search.svg" alt="Search" />
         </button>
-      </search>
-    </form>
+      </form>
+    </search>
   );
 };
 
