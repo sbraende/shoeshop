@@ -10,9 +10,9 @@ import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import SignUp from "../pages/Signup/SignUp";
 import SearchResults from "../pages/SearchResults/SearchResults";
-import SignIn from "../pages/Signin/SignIn";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import Profile from "../pages/Profile/Profile";
+import SignIn from "../pages/Signin/Signin";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
