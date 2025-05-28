@@ -1,6 +1,5 @@
 // import styles from "./ForgotPassword.module.css";
-
-import formStyles from "../../styles/FormStyles.Module.css";
+import formStyles from "../../styles/FormStyles.module.css";
 import RequiredField from "../../components/RequiredField/RequiredField";
 import { Link } from "react-router-dom";
 import { auth } from "../../../auth.config";

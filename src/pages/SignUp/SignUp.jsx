@@ -1,5 +1,5 @@
 import styles from "./SignUp.module.css";
-import formStyles from "../../styles/FormStyles.Module.css";
+import formStyles from "../../styles/FormStyles.module.css";
 
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
