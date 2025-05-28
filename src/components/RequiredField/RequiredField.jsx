@@ -1,4 +1,4 @@
-import formStyles from "../../styles/FormStyles.Module.css";
+import formStyles from "../../styles/FormStyles.module.css";
 
 const RequiredField = () => {
   return (
