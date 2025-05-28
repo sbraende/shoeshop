@@ -8,6 +8,7 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../../firestore.config";
 import { Link, useNavigate } from "react-router";
 import RequiredField from "../../components/RequiredField/RequiredField";
+import useSignUpValidation from "../../hooks/useSignUpValidation";
 
 const SignUp = () => {
   // Hooks
