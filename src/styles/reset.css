@@ -8,6 +8,7 @@ button {
   background-color: transparent;
   cursor: pointer;
   border: 0;
+  font-size: inherit;
 }
 
 ul,

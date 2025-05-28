@@ -69,7 +69,6 @@
 .submitButton {
   width: 100%;
   color: white;
-  text-transform: uppercase;
   padding: var(--spacing-small) var(--spacing-medium);
   background-color: var(--color-gradient-color1);
   border-radius: var(--border-radius-medium);

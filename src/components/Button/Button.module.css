@@ -1,0 +1,12 @@
+.button {
+  width: 100%;
+  color: white;
+  padding: var(--spacing-small) var(--spacing-medium);
+  background-color: var(--color-gradient-color1);
+  border-radius: var(--border-radius-medium);
+  transition: opacity 0.25s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}

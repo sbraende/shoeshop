@@ -55,13 +55,15 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 - [https://www.salomon.com/](https://www.salomon.com/)
 - [https://fynd.no/](https://fynd.no/)
 - [https://www.norrona.com/](https://www.norrona.com/)
+- [https://hyroxshop.de/](https://hyroxshop.de/)
 
 ## Acknowledgements
 
 ### Images
 
-- [https://unsplash.com/](https://unsplash.com/)
 - [https://www.salomon.com/](https://www.salomon.com/)
+- [https://unsplash.com/](https://unsplash.com/)
+- [https://iconoir.com/](https://iconoir.com/)
 
 ### AI Assistance – ChatGPT
 

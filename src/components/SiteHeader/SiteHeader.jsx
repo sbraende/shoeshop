@@ -3,7 +3,7 @@ import styles from "./SiteHeader.module.css";
 import Search from "../Search/Search";
 import { getUserContext } from "../../context/userDataContext";
 
-const SiteHeader = () => {
+const SiteHeader = ({ setDisplayCart }) => {
   const userData = getUserContext();
 
   return (
@@ -35,13 +35,13 @@ const SiteHeader = () => {
           </Link>
         )}
 
-        <Link>
+        <button onClick={() => setDisplayCart(true)}>
           <img
             className={styles.icon}
             src="/icons/shopping-bag.svg"
             alt="Cart"
           />
-        </Link>
+        </button>
       </div>
       <nav className={styles.navContainer}>
         <NavLink className={styles.navLink}>SHOES</NavLink>
