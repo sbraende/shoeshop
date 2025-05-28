@@ -8,11 +8,11 @@ import Home from "../pages/Home/Home";
 import Checkout from "../pages/Checkout/Checkout";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import ProductPage from "../pages/ProductPage/ProductPage";
-import SignUp from "../pages/Signup/SignUp";
 import SearchResults from "../pages/SearchResults/SearchResults";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import Profile from "../pages/Profile/Profile";
 import SignIn from "../pages/SignIn/SignIn";
+import SignUp from "../pages/SignUp/SignUp";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
