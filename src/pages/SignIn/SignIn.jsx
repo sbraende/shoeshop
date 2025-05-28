@@ -1,11 +1,11 @@
 import styles from "./SignIn.module.css";
 import formStyles from "../../styles/FormStyles.module.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
 import { auth } from "../../../auth.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import RequiredField from "../../components/RequiredField/RequiredField";
-import useSignInValidation from "../../hooks/useSigninValidation";
+import useSignInValidation from "../../hooks/useSignInValidation";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [signInData, setSignInData] = useState({
