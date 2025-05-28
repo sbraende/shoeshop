@@ -1,45 +1,62 @@
-import styles from "./Signin.module.css";
+import styles from "./SignIn.module.css";
 import formStyles from "../../styles/FormStyles.Module.css";
-import { useState } from "react";
-import { auth } from "../../../auth.config";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
+import { auth } from "../../../auth.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import RequiredField from "../../components/RequiredField/RequiredField";
+import useSignInValidation from "../../hooks/useSigninValidation";
 
-const Signin = () => {
-  const navigate = useNavigate();
-
-  const [signInData, setsignInData] = useState({
+const SignIn = () => {
+  const [signInData, setSignInData] = useState({
     email: "",
     password: "",
   });
+  const [signInErrorMessage, setSignInErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const { validateSignIn, signInErrors } = useSignInValidation();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
 
-    setsignInData((prevInputData) => ({
+    setSignInData((prevInputData) => ({
       ...prevInputData,
       [name]: value,
     }));
   };
 
-  const handleSignin = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
-    try {
-      signInWithEmailAndPassword(auth, signInData.email, signInData.password);
-    } catch (error) {
-      console.log("Could not sign-in user", error);
-      alert("Could not sign in, please contact us if recurring problem");
+    if (!validateSignIn(signInData)) {
+      console.log("Form not valid");
+      return;
     }
 
-    // Navigate to home
-    navigate("/");
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        signInData.email.trim(),
+        signInData.password.trim()
+      );
+      navigate("/");
+      setSignInData({
+        email: "",
+        password: "",
+      });
+      setSignInErrorMessage("");
+    } catch (error) {
+      console.error("Could not sign-in user", error);
+      setSignInErrorMessage(
+        "Something went wrong. Please verify your email and password and try again."
+      );
+    }
   };
 
   return (
     <div className={formStyles.formContainer}>
-      <form onSubmit={handleSignin} noValidate className={formStyles.form}>
+      <form onSubmit={handleSignIn} noValidate className={formStyles.form}>
         <h2 className={formStyles.title}>Sign in</h2>
         <fieldset className={formStyles.fieldset}>
           <div className={formStyles.formGroup}>
@@ -52,8 +69,9 @@ const Signin = () => {
               id="email"
               maxLength={80}
               onChange={handleInput}
-              // value={singupData.firstName}
+              value={signInData.email}
             />
+            {signInErrors && <p className="error">{signInErrors.email}</p>}
           </div>
           <div className={formStyles.formGroup}>
             <label htmlFor="password">
@@ -65,9 +83,11 @@ const Signin = () => {
               id="password"
               maxLength={80}
               onChange={handleInput}
-              // value={singupData.password}
+              value={signInData.password}
             />
+            {signInErrors && <p className="error">{signInErrors.password}</p>}
           </div>
+          {signInErrorMessage && <p className="error">{signInErrorMessage}</p>}
         </fieldset>
         <Link className={formStyles.link} to={"/forgotPassword"}>
           Forgot your password?
@@ -86,4 +106,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignIn;

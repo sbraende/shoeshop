@@ -1,4 +1,4 @@
-import styles from "./Signup.module.css";
+import styles from "./SignUp.module.css";
 import formStyles from "../../styles/FormStyles.Module.css";
 
 import { useState } from "react";
@@ -8,11 +8,13 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../../firestore.config";
 import { Link, useNavigate } from "react-router";
 import RequiredField from "../../components/RequiredField/RequiredField";
+import useSignUpValidation from "../../hooks/useSignupValidation";
 
-const Signup = () => {
+const SignUp = () => {
+  // Hooks
   const navigate = useNavigate();
 
-  const [singupData, setSingupData] = useState({
+  const [singUpData, setSignUpData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -20,123 +22,137 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const { signUpErrors, validateSignUpData } = useSignUpValidation();
+  const [signUpError, setSignUpError] = useState("");
+
+  // Logic
   const handleInput = (e) => {
     const { name, value } = e.target;
 
-    setSingupData((prevInputData) => ({
+    setSignUpData((prevInputData) => ({
       ...prevInputData,
       [name]: value,
     }));
   };
 
-  const handleSignup = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // TODO: Add validation here
+    setSignUpError("");
 
-    // Create user
+    if (!validateSignUpData(singUpData)) {
+      console.log("Form not valid");
+      return;
+    }
+
     try {
+      // Create auth user
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
-        singupData.email.trim(),
-        singupData.password.trim()
+        singUpData.email.trim(),
+        singUpData.password.trim()
       );
 
+      // Add user to database
       await setDoc(doc(db, "users", userCredentials.user.uid), {
-        firstName: singupData.firstName.trim(),
-        lastName: singupData.lastName.trim(),
-        email: singupData.email.trim(),
+        firstName: singUpData.firstName.trim(),
+        lastName: singUpData.lastName.trim(),
+        email: singUpData.email.trim(),
         timestamp: serverTimestamp(),
       });
+
+      navigate("/");
 
       console.log("User signed up and Firestore document created.");
     } catch (error) {
       console.error("Sign up failed", error);
-      alert("Could not create account, please contact admin");
+      setSignUpError(
+        "Could not create account. Do you have an account already? If not, please try again."
+      );
     }
-
-    // Rest input field
-    setSingupData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-
-    // Navigate to home
-    navigate("/");
   };
 
+  // JSX markup
   return (
     <div className={formStyles.formContainer}>
-      <form onSubmit={handleSignup} noValidate className={formStyles.form}>
+      <form onSubmit={handleSignUp} noValidate className={formStyles.form}>
         <h2 className={formStyles.title}>Sign Up</h2>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="firstName">
-            First name <RequiredField />
-          </label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            maxLength={80}
-            onChange={handleInput}
-            value={singupData.firstName}
-          />
-        </div>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="lastName">
-            Last Name <RequiredField />
-          </label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            maxLength={80}
-            onChange={handleInput}
-            value={singupData.lastName}
-          />
-        </div>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="email">
-            Email <RequiredField />
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            maxLength={80}
-            onChange={handleInput}
-            value={singupData.email}
-          />
-        </div>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="password">
-            Password <RequiredField />
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            maxLength={80}
-            onChange={handleInput}
-            value={singupData.password}
-          />
-        </div>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="confirmPassword">
-            Confirm password <RequiredField />
-          </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            maxLength={80}
-            onChange={handleInput}
-            value={singupData.confirmPassword}
-          />
-        </div>
+        <fieldset className={formStyles.fieldset}>
+          <div className={formStyles.formGroup}>
+            <label htmlFor="firstName">
+              First name <RequiredField />
+            </label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              maxLength={80}
+              onChange={handleInput}
+              value={singUpData.firstName}
+            />
+            {signUpErrors && <p className="error">{signUpErrors.firstName}</p>}
+          </div>
+          <div className={formStyles.formGroup}>
+            <label htmlFor="lastName">
+              Last Name <RequiredField />
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              maxLength={80}
+              onChange={handleInput}
+              value={singUpData.lastName}
+            />
+            {signUpErrors && <p className="error">{signUpErrors.lastName}</p>}
+          </div>
+
+          <div className={formStyles.formGroup}>
+            <label htmlFor="email">
+              Email <RequiredField />
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              maxLength={80}
+              onChange={handleInput}
+              value={singUpData.email}
+            />
+            {signUpErrors && <p className="error">{signUpErrors.email}</p>}
+          </div>
+          <div className={formStyles.formGroup}>
+            <label htmlFor="password">
+              Password <RequiredField />
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              maxLength={80}
+              onChange={handleInput}
+              value={singUpData.password}
+            />
+            {signUpErrors && <p className="error">{signUpErrors.password}</p>}
+          </div>
+          <div className={formStyles.formGroup}>
+            <label htmlFor="confirmPassword">
+              Confirm password <RequiredField />
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              maxLength={80}
+              onChange={handleInput}
+              value={singUpData.confirmPassword}
+            />
+            {signUpErrors && (
+              <p className="error">{signUpErrors.confirmPassword}</p>
+            )}
+          </div>
+          {signUpError && <p className="error">{signUpError}</p>}
+        </fieldset>
         <button type="submit" className={formStyles.submitButton}>
           Create account
         </button>
@@ -147,4 +163,4 @@ const Signup = () => {
     </div>
   );
 };
-export default Signup;
+export default SignUp;

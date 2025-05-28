@@ -1,40 +1,39 @@
 import styles from "./ForgotPassword.module.css";
+
 import formStyles from "../../styles/FormStyles.Module.css";
 import RequiredField from "../../components/RequiredField/RequiredField";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../../../auth.config";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useForgotPasswordValidation from "../../hooks/useForgotPasswordValidation";
 
 const ForgotPassword = () => {
-  const navigate = useNavigate();
+  // Hooks
   const [email, setEmail] = useState("");
   const [isResetEmailSent, setIsResetEmailSent] = useState(false);
+  const [validationFailedMessage, setValidationFailedMessage] = useState("");
 
+  const { validateForgotPassword, forgotPasswordErrors } =
+    useForgotPasswordValidation();
+
+  // Logic
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // validate
+    if (!validateForgotPassword(email)) return;
 
     try {
-      sendPasswordResetEmail(auth, email);
-      setIsResetEmailSent(true);
+      await sendPasswordResetEmail(auth, email);
     } catch (error) {
-      console.error("Could not reset password, ", error);
-      alert(
-        "Could not reset password, please contact site-admin if persistent"
-      );
+      console.error(error);
+      setValidationFailedMessage("Something went wrong. Try again");
+      return;
     }
+    setIsResetEmailSent(true);
   };
 
-  useEffect(() => {
-    if (!isResetEmailSent) return;
-
-    const timer = setTimeout(() => navigate("/"), 5000);
-
-    return () => clearTimeout(timer);
-  }, [isResetEmailSent]);
-
+  // Markup
   return (
     <div className={formStyles.formContainer}>
       <form noValidate className={formStyles.form} onSubmit={handleSubmit}>
@@ -50,9 +49,19 @@ const ForgotPassword = () => {
               name="email"
               id="email"
               maxLength={80}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setValidationFailedMessage("");
+                setIsResetEmailSent(false);
+              }}
             />
+            {forgotPasswordErrors && (
+              <p className="error">{forgotPasswordErrors.email}</p>
+            )}
           </div>
+          {validationFailedMessage && (
+            <p className="error">{validationFailedMessage}</p>
+          )}
         </fieldset>
         <button
           type="submit"
@@ -62,7 +71,10 @@ const ForgotPassword = () => {
           Continue
         </button>
         {isResetEmailSent && (
-          <p className={formStyles.confirmMessage}>Password reset email sent</p>
+          <p className={formStyles.informationText}>
+            If an account is associated with this email address, you will
+            receive an email with a link to reset your password.
+          </p>
         )}
         <Link className={formStyles.link} to={"/signin"}>
           Back to login
