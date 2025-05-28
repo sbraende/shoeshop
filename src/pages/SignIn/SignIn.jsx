@@ -1,6 +1,6 @@
 import styles from "./SignIn.module.css";
-import formStyles from "../../styles/FormStyles.Module.css";
-import { useEffect, useState } from "react";
+import formStyles from "../../styles/FormStyles.module.css";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { auth } from "../../../auth.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
