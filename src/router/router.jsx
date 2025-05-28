@@ -12,7 +12,7 @@ import SignUp from "../pages/Signup/SignUp";
 import SearchResults from "../pages/SearchResults/SearchResults";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import Profile from "../pages/Profile/Profile";
-import SignIn from "../pages/Signin/Signin";
+import SignIn from "../pages/SignIn/SignIn";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
