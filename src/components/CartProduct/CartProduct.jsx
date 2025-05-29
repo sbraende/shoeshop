@@ -27,13 +27,13 @@ const CartProduct = ({ product, count, setDisplayCart }) => {
   return (
     <div className={styles.productContainer}>
       <button className={styles.imageContainer} onClick={handleProductLink}>
-        <img src="/images/shoes/salomon-genesis.webp" alt="" />
+        <img src="/images/shoes/salomon-genesis.webp" alt="Product image" />
       </button>
       <div className={styles.productDetailsContainer}>
         <div className={styles.productInfoContainer}>
           <div className={styles.productInfoTextContainer}>
             <button className={styles.productName} onClick={handleProductLink}>
-              {product.name}
+              {`${product.brand} ${product.name}`}
             </button>
             <p>shoe size/color</p>
             <p>size</p>
@@ -48,7 +48,7 @@ const CartProduct = ({ product, count, setDisplayCart }) => {
             count={count}
             handleDecrement={handleDecrement}
           />
-          <p>£250</p>
+          <p>{`£${count * product.price}`}</p>
         </div>
       </div>
     </div>

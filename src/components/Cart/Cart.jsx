@@ -1,7 +1,6 @@
 import styles from "./Cart.module.css";
-import shoeList from "../../data/shoeData";
 import CartProduct from "../CartProduct/CartProduct";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { getCartContext } from "../../context/cartContext";
@@ -24,6 +23,11 @@ const Cart = ({ setDisplayCart }) => {
     navigate(`/checkout`);
     setDisplayCart(false);
   };
+
+  const total = `£${cart.reduce(
+    (accumulator, p) => accumulator + p.count * p.product.price,
+    0
+  )}`;
 
   // JSX-markup
   return (
@@ -55,7 +59,7 @@ const Cart = ({ setDisplayCart }) => {
               <strong>Total</strong>
             </span>
             <span>
-              <strong>£1000</strong>
+              <strong>{total}</strong>
             </span>
           </div>
           <div className={styles.checkoutContainer}>
