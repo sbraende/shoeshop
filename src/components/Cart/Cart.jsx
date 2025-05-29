@@ -4,9 +4,11 @@ import CartProduct from "../CartProduct/CartProduct";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
+import { getCartContext } from "../../context/cartContext";
 
 const Cart = ({ setDisplayCart }) => {
   // Hooks
+  const { cart } = getCartContext();
   const navigate = useNavigate();
 
   // Logic
@@ -34,10 +36,11 @@ const Cart = ({ setDisplayCart }) => {
           </button>
         </header>
         <div className={styles.productList}>
-          {shoeList.map((p) => (
+          {cart.map((p) => (
             <CartProduct
-              key={p.id}
-              product={p}
+              key={p.product.id}
+              product={p.product}
+              count={p.count}
               setDisplayCart={setDisplayCart}
             />
           ))}

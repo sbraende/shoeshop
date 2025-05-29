@@ -3,7 +3,7 @@ import styles from "./CartProduct.module.css";
 import Counter from "../Counter/Counter";
 import { getCartContext } from "../../context/cartContext";
 
-const CartProduct = ({ product, setDisplayCart }) => {
+const CartProduct = ({ product, count, setDisplayCart }) => {
   const { dispatchCart } = getCartContext();
   const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ const CartProduct = ({ product, setDisplayCart }) => {
         <div className={styles.productCountContainer}>
           <Counter
             handleIncrement={handleIncrement}
+            count={count}
             handleDecrement={handleDecrement}
           />
           <p>£250</p>

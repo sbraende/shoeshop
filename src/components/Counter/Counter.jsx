@@ -1,6 +1,6 @@
 import styles from "./Counter.module.css";
 
-const Counter = ({ count = 0, handleIncrement, handleDecrement }) => {
+const Counter = ({ count, handleIncrement, handleDecrement }) => {
   return (
     <div className={styles.counter}>
       <button onClick={handleDecrement}>
