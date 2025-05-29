@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 
 const Cart = ({ setDisplayCart }) => {
+  // Hooks
   const navigate = useNavigate();
 
+  // Logic
   // Turn scrolling off on <body>
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -21,6 +23,7 @@ const Cart = ({ setDisplayCart }) => {
     setDisplayCart(false);
   };
 
+  // JSX-markup
   return (
     <div className={styles.cart}>
       <div className={styles.cartContent}>

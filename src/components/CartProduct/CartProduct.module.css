@@ -3,9 +3,6 @@
   gap: var(--spacing-medium);
 }
 
-.imageContainer {
-}
-
 .imageContainer img {
   width: 100px;
 }

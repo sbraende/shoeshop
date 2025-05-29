@@ -1,11 +1,18 @@
+import { getCartContext } from "../../context/cartContext";
 import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const { dispatchCart } = getCartContext();
+
   const handleBuyButton = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Add product to basket");
+
+    dispatchCart({
+      type: "addedProduct",
+      payload: product,
+    });
   };
 
   return (

@@ -68,6 +68,7 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 ### AI Assistance – ChatGPT
 
 - Helped set up redirecting from the Search component to the SearchResults page, including how to use `encodeURIComponent` and `URLSearchParams`.
+- Helped with some of the code in cartReducer.
 - Assisted with the initial draft of `README.md`.
 
 ## License

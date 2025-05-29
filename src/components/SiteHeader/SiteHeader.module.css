@@ -1,11 +1,12 @@
 .siteHeader {
   width: 100%;
   max-width: 1000px;
-  padding: var(--spacing-medium) var(--spacing-medium);
+  padding: var(--spacing-x-small) var(--spacing-medium);
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: repeat(2, auto);
-  gap: var(--spacing-small);
+  row-gap: 0;
+  column-gap: var(--spacing-small);
 }
 
 .logoContainer {
