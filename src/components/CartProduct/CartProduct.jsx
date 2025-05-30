@@ -8,7 +8,7 @@ const CartProduct = ({ product, count, setDisplayCart }) => {
   const navigate = useNavigate();
 
   const handleProductLink = () => {
-    navigate(`/product/${product.id}`);
+    navigate(`/products/${product.id}`);
     setDisplayCart(false);
   };
 
@@ -27,7 +27,7 @@ const CartProduct = ({ product, count, setDisplayCart }) => {
   return (
     <div className={styles.productContainer}>
       <button className={styles.imageContainer} onClick={handleProductLink}>
-        <img src="/images/shoes/salomon-genesis.webp" alt="Product image" />
+        <img src={product.imageURL} alt="Product image" />
       </button>
       <div className={styles.productDetailsContainer}>
         <div className={styles.productInfoContainer}>

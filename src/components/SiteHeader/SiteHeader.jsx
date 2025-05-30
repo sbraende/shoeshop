@@ -2,9 +2,16 @@ import { Link, NavLink } from "react-router-dom";
 import styles from "./SiteHeader.module.css";
 import Search from "../Search/Search";
 import { getUserContext } from "../../context/userDataContext";
+import { getCartContext } from "../../context/cartContext";
 
 const SiteHeader = ({ setDisplayCart }) => {
+  const { cart } = getCartContext();
   const userData = getUserContext();
+
+  const itemsInCartTotal = cart.reduce(
+    (accumulator, currentItem) => accumulator + currentItem.count,
+    0
+  );
 
   return (
     <header className={styles.siteHeader}>
@@ -35,12 +42,16 @@ const SiteHeader = ({ setDisplayCart }) => {
           </Link>
         )}
 
-        <button onClick={() => setDisplayCart(true)}>
+        <button
+          className={styles.cartButton}
+          onClick={() => setDisplayCart(true)}
+        >
           <img
             className={styles.icon}
             src="/icons/shopping-bag.svg"
             alt="Cart"
           />
+          {itemsInCartTotal > 0 ? <span>{itemsInCartTotal}</span> : ""}
         </button>
       </div>
       <nav className={styles.navContainer}>

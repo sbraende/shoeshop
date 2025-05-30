@@ -50,17 +50,23 @@
   width: 32px;
 }
 
-/* .profileLink {
-  width: 32px;
-  height: 32px;
-  border: 2px solid var(--color-primary-back);
+.cartButton {
+  position: relative;
+}
+
+.cartButton span {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: var(--color-gradient-color1);
   border-radius: 50%;
+  font-size: 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--color-primary-back);
-  text-decoration: none;
-} */
+}
 
 .navContainer {
   width: 100%;

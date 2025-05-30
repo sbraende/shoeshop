@@ -11,8 +11,7 @@ const Home = () => {
       <section className={`${styles.section} ${styles.sectionPopularNow}`}>
         <h2 className={styles.sectionHeader}>POPULAR NOW</h2>
         <ProductList />
-        <ProductList />
-        <ProductList />
+        <h2 className={styles.sectionHeader}>IN SEASON</h2>
         <ProductList />
       </section>
     </div>

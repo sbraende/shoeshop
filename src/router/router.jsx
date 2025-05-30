@@ -24,7 +24,7 @@ export const router = createBrowserRouter(
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/checkout" element={<Checkout />} />
-      <Route path="/product/:productId" element={<ProductPage />} />
+      <Route path="/products/:productId" element={<ProductPage />} />
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )

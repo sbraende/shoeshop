@@ -17,18 +17,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <li className={styles.productCard}>
-      <Link to={`/product/${product.id}`} className={styles.link}>
+      <Link to={`/products/${product.id}`} className={styles.link}>
         <img
-          src={`/images/shoes/salomon-genesis.webp`}
-          alt={`Image of product`}
+          src={product.imageURL}
+          alt={product.name}
           className={styles.productImage}
         />
         <h5 className={styles.title}>{`${product.brand} ${product.name}`}</h5>
         <div className={styles.detailsRow}>
           <span className={styles.price}>{`£${product.price.toFixed(2)}`}</span>
-          <button className={styles.buyButton} onClick={handleBuyButton}>
-            Buy
-          </button>
         </div>
       </Link>
     </li>
