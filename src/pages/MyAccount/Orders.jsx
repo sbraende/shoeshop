@@ -28,12 +28,20 @@ const Orders = () => {
       );
       setUserOrders([]);
       orders.forEach((docRef) => {
-        console.log(docRef.data());
         setUserOrders((prevUserOrders) => [...prevUserOrders, docRef.data()]);
       });
     };
     getOrders();
   }, [user]);
+
+  const displayOrderDetails = (o) => {
+    const brand = o.order.map((order) => (
+      <p
+        key={crypto.randomUUID()}
+      >{`${order.count} x ${order.product.brand} ${order.product.name}`}</p>
+    ));
+    return brand;
+  };
 
   return (
     <div className={styles.orders}>
@@ -43,10 +51,13 @@ const Orders = () => {
           return (
             <li key={String(o.orderNumber)} className={styles.ordersItem}>
               <img src={null} alt="" />
-              <p>Order number: {o.orderNumber}</p>
-              {/* <p>Date: {o.timestamp}</p> */}
+              <p>
+                <strong>Order number:</strong> {o.orderNumber}
+              </p>
               <p>Staus: {o.status}</p>
-              <p>Order total: {o.total}</p>
+              <p>Cart: </p>
+              {displayOrderDetails(o)}
+              <span>Order total: {o.total}</span>
             </li>
           );
         })}

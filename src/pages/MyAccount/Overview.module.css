@@ -1,0 +1,10 @@
+.myAccountContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.signOutButton {
+  text-decoration: underline;
+  font-weight: 600;
+}

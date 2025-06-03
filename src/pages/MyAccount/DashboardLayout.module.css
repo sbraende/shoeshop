@@ -1,0 +1,36 @@
+.dashboard {
+  width: 100%;
+  padding: var(--spacing-large) var(--spacing-medium);
+}
+
+.dashboardContainer {
+  display: flex;
+  padding: var(--spacing-large) var(--spacing-medium);
+  gap: var(--spacing-medium);
+  background-color: var(--color-primary-white);
+  border-radius: var(--border-radius-small);
+}
+
+.sidebar {
+  padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium) 0;
+  border-right: 2px solid var(--color-mediumDark-gray);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.dashboardButton {
+  display: flex;
+  gap: var(--spacing-small);
+  text-decoration: none;
+  align-items: center;
+}
+
+.dashboardButtonActive {
+  font-weight: 600;
+}
+
+.dashboardButton span {
+  color: var(--color-dark-gray);
+}
