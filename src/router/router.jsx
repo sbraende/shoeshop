@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from "react-router-dom";
 import App from "../App";
@@ -17,25 +18,77 @@ import DashboardLayout from "../pages/MyAccount/DashboardLayout";
 import Overview from "../pages/MyAccount/Overview";
 import Orders from "../pages/MyAccount/Orders";
 import Confirmation from "../pages/Confirmation/Confirmation";
+import { getAuthContext } from "../context/authContext";
+
+const RouteGuard = ({ children }) => {
+  const { user, loading } = getAuthContext();
+
+  if (loading) return;
+
+  if (!user) return <Navigate to="/signin" />;
+
+  return children;
+};
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
+      {/* Public routes */}
       <Route index element={<Home />} />
       <Route path="/search" element={<SearchResults />} />
+      <Route path="/products/:productId" element={<ProductPage />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/checkout" element={<Checkout />} />
+      {/* Private routes */}
+      <Route
+        path="/dashboard"
+        element={
+          <RouteGuard>
+            <Dashboard />
+          </RouteGuard>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <RouteGuard>
+            <Checkout />
+          </RouteGuard>
+        }
+      />
       <Route
         path="/checkout/confirmation/:orderNumber"
-        element={<Confirmation />}
+        element={
+          <RouteGuard>
+            <Confirmation />
+          </RouteGuard>
+        }
       />
-      <Route path="/products/:productId" element={<ProductPage />} />
-      <Route path="/myaccount" element={<DashboardLayout />}>
-        <Route index element={<Overview />} />
-        <Route path="orders" element={<Orders />} />
+      <Route
+        path="/myaccount"
+        element={
+          <RouteGuard>
+            <DashboardLayout />
+          </RouteGuard>
+        }
+      >
+        <Route
+          index
+          element={
+            <RouteGuard>
+              <Overview />
+            </RouteGuard>
+          }
+        />
+        <Route
+          path="orders"
+          element={
+            <RouteGuard>
+              <Orders />
+            </RouteGuard>
+          }
+        />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Route>
