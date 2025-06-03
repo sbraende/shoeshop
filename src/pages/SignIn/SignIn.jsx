@@ -14,7 +14,6 @@ const SignIn = () => {
   });
   const [signInErrorMessage, setSignInErrorMessage] = useState("");
   const navigate = useNavigate();
-
   const { validateSignIn, signInErrors } = useSignInValidation();
 
   const handleInput = (e) => {

@@ -16,6 +16,7 @@ const Checkout = () => {
     email: "",
     firstName: "",
     lastName: "",
+    company: "",
     address: "",
     address2: "",
     city: "",
@@ -57,6 +58,8 @@ const Checkout = () => {
 
     // Store data in Firestore
     try {
+      console.log("Adding to db");
+
       await addDoc(collection(db, "orders"), {
         order: cart,
         userId: user.uid,
@@ -75,21 +78,24 @@ const Checkout = () => {
         },
         timestamp: serverTimestamp(),
       });
-    } catch (error) {}
+      console.log("Added successfulyy");
+    } catch (error) {
+      console.log("Error submitting order: ", error);
+    }
 
     // Navigate to order complete page / just have a state to complete order?
 
     // Clear cart
-    dispatchCart({ type: "clearCart" });
-    setCheckoutData({
-      email: "",
-      firstName: "",
-      lastName: "",
-      address: "",
-      address2: "",
-      city: "",
-      postcode: "",
-    });
+    // dispatchCart({ type: "clearCart" });
+    // setCheckoutData({
+    //   email: "",
+    //   firstName: "",
+    //   lastName: "",
+    //   address: "",
+    //   address2: "",
+    //   city: "",
+    //   postcode: "",
+    // });
   };
 
   return (

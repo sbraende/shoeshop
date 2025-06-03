@@ -1,12 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from "./SiteHeader.module.css";
 import Search from "../Search/Search";
-import { getUserContext } from "../../context/userDataContext";
 import { getCartContext } from "../../context/cartContext";
+import { getAuthContext } from "../../context/authContext";
 
 const SiteHeader = ({ setDisplayCart }) => {
+  const { user } = getAuthContext();
   const { cart } = getCartContext();
-  const userData = getUserContext();
 
   const itemsInCartTotal = cart.reduce(
     (accumulator, currentItem) => accumulator + currentItem.count,
@@ -24,19 +24,15 @@ const SiteHeader = ({ setDisplayCart }) => {
         <Search />
       </div>
       <div className={styles.navigationItemsContainer}>
-        {userData ? (
-          <Link to={"/profile"}>
-            <img
-              className={styles.icon}
-              src="/icons/profile-circle.svg"
-              alt="Profile"
-            />
+        {user ? (
+          <Link to={"/myaccount"}>
+            <img className={styles.icon} src="/icons/user.svg" alt="Profile" />
           </Link>
         ) : (
           <Link to={"/signin"}>
             <img
               className={styles.icon}
-              src="/icons/profile-circle.svg"
+              src="/icons/user-circle.svg"
               alt="Profile"
             />
           </Link>

@@ -68,9 +68,13 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 ### AI Assistance – ChatGPT
 
 - Helped set up redirecting from the Search component to the SearchResults page, including how to use `encodeURIComponent` and `URLSearchParams`.
-- Helped with some of the code in cartReducer.
+- Assisted with fixing the `pure function` error I got with using localStorage in cartReducer.
 - Assisted with the initial draft of `README.md`.
 
 ## License
 
 This project is licensed under the [MIT License](./LICENSE). You’re free to use, modify, and distribute this project under its terms.
+
+## Assigment notes
+
+- Reza has approved GeminiAI as external API.

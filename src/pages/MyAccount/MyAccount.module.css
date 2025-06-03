@@ -1,0 +1,59 @@
+.profile {
+  width: 100%;
+  max-width: var(--layout-primary-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard {
+  padding: var(--spacing-large) var(--spacing-medium);
+  border-radius: var(--border-radius-small);
+  display: flex;
+  gap: var(--spacing-medium);
+  background-color: var(--color-primary-white);
+}
+
+.dashboardNav {
+  padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium) 0;
+  border-right: 2px solid var(--color-mediumDark-gray);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.dashboardButton {
+  display: flex;
+  gap: var(--spacing-small);
+  text-decoration: none;
+}
+
+.dashboardButtonActive {
+  font-weight: 600;
+}
+
+.dashboardButton span {
+  color: var(--color-dark-gray);
+}
+
+/* My Account */
+.myAccountContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+/* Sign out */
+
+.signOutButton {
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.signOutButton:disabled {
+  color: var(--color-mediumDark-gray);
+}
