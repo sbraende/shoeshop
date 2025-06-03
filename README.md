@@ -69,6 +69,7 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 
 - Helped set up redirecting from the Search component to the SearchResults page, including how to use `encodeURIComponent` and `URLSearchParams`.
 - Assisted with fixing the `pure function` error I got with using localStorage in cartReducer.
+- Assisted with structure for MyAccount components.
 - Assisted with the initial draft of `README.md`.
 
 ## License

@@ -56,34 +56,33 @@ const SearchResults = () => {
       if (responseData.shoeId === "null") responseData.shoeId = null;
 
       setAiResults(responseData);
-      console.log(responseData);
+      // console.log(responseData);
     };
     getAiRecommendedProduct();
   }, [userQuery]);
 
   // Match shoe data based on ID.
-  const getShoe = (shoeId) => {
-    return shoeList.find((s) => parseInt(shoeId) === s.id);
+  const findShoe = () => {
+    return shoeList.find((s) => aiResults.shoeId === s.id);
   };
 
-  if (!aiResults.response) {
-    return (
-      <div>
-        <p>Loading search results...</p>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <h3>Our recommendation</h3>
-      <p>{aiResults.response}</p>
-
-      {aiResults.shoeId && (
-        <ul className={styles.productList}>
-          <ProductCard product={getShoe(aiResults.shoeId)} />
-        </ul>
-      )}
+    <div className={styles.searchResults}>
+      <div className={styles.searchResultsContent}>
+        {aiResults.response ? (
+          <>
+            <h3>Our recommendation</h3>
+            <p>{aiResults.response}</p>
+            {aiResults.shoeId && (
+              <ul className={styles.productList}>
+                <ProductCard product={findShoe()} />
+              </ul>
+            )}
+          </>
+        ) : (
+          <p>Loading search results...</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -45,6 +45,7 @@
 
   /* Layout widths */
   --layout-primary-width: 1024px;
+  --layout-secondary-width: 600px;
 
   /* Icon size */
   --icon-size: 32px;

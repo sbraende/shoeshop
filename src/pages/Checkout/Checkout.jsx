@@ -6,12 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CartProduct from "../../components/CartProduct/CartProduct";
 import useCheckoutValidation from "../../hooks/useCheckoutValidation";
 import { useState } from "react";
-import {
-  addDoc,
-  collection,
-  getDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getAuthContext } from "../../context/authContext";
 import { db } from "../../../firestore.config";
 

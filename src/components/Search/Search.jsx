@@ -12,6 +12,7 @@ const Search = () => {
     if (!query.trim()) return;
 
     navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    setQuery("");
   };
 
   return (
@@ -27,6 +28,7 @@ const Search = () => {
           autoComplete="off"
           autoCorrect="off"
           onChange={(e) => setQuery(e.target.value)}
+          value={query}
         />
         <button type="submit" className={styles.searchButton}>
           <img className={styles.icon} src="/icons/search.svg" alt="Search" />
