@@ -1,7 +1,7 @@
 .siteHeader {
   width: 100%;
   max-width: 1000px;
-  padding: var(--spacing-x-small) var(--spacing-medium);
+  padding: var(--spacing-x-small) var(--spacing-small);
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: repeat(2, auto);

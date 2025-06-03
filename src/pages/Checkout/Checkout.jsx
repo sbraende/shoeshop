@@ -7,7 +7,6 @@ import CartProduct from "../../components/CartProduct/CartProduct";
 import useCheckoutValidation from "../../hooks/useCheckoutValidation";
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
 import { getAuthContext } from "../../context/authContext";
 import { db } from "../../../firestore.config";
 
@@ -22,7 +21,7 @@ const Checkout = () => {
     city: "",
     postcode: "",
   });
-  const { cart, dispatchCart } = getCartContext();
+  const { cart } = getCartContext();
   const { errors, validateCheckout } = useCheckoutValidation();
   const { user } = getAuthContext();
 
@@ -49,6 +48,10 @@ const Checkout = () => {
     e.preventDefault();
 
     // Validate
+    if (cart.length === 0) {
+      alert("Cart is empty. Please continue shopping");
+    }
+
     if (!validateCheckout(checkoutData)) {
       console.log("Form not submitted");
       return;
@@ -58,11 +61,9 @@ const Checkout = () => {
 
     // Store data in Firestore
     try {
-      console.log("Adding to db");
-
       await addDoc(collection(db, "orders"), {
         order: cart,
-        userId: user.uid,
+        userId: user.uid || "",
         email: checkoutData.email,
         orderNumber: generateOrderNumber(),
         status: "paid",
@@ -78,9 +79,10 @@ const Checkout = () => {
         },
         timestamp: serverTimestamp(),
       });
-      console.log("Added successfulyy");
+      console.log("Added order successfully");
     } catch (error) {
       console.log("Error submitting order: ", error);
+      alert("Could not submit order, please contact site admin if persistant");
     }
 
     // Navigate to order complete page / just have a state to complete order?
@@ -100,152 +102,148 @@ const Checkout = () => {
 
   return (
     <div className={styles.checkout}>
-      <header className={styles.header}>
-        <Link className={styles.logoContainer} to={"/"}>
-          <img src="/logo/stride-labs-logo.png" alt="Stride Labs logo" />
-        </Link>
-      </header>
-      <h2>Checkout</h2>
-      <div className={styles.checkoutMain}>
-        <div className={styles.checkoutDetails}>
-          <form noValidate className={styles.form} onSubmit={handleSubmitOrder}>
-            <fieldset className={formStyles.fieldset}>
-              <legend className={formStyles.legend}>Contact</legend>
-              <div className={formStyles.formGroup}>
-                <label htmlFor="email">
-                  Email <RequiredField />
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  maxLength={80}
-                  onChange={handleInput}
+      <Link className={styles.logoContainer} to={"/"}>
+        <img src="/logo/stride-labs-logo.png" alt="Stride Labs logo" />
+      </Link>
+      <div className={styles.checkoutContainer}>
+        <h2>Checkout</h2>
+        <div className={styles.checkoutMain}>
+          <div className={styles.checkoutDetails}>
+            <form
+              noValidate
+              className={styles.form}
+              onSubmit={handleSubmitOrder}
+            >
+              <fieldset className={formStyles.fieldset}>
+                <legend className={formStyles.legend}>Contact</legend>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="email">
+                    Email <RequiredField />
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                  {errors && <p className="error">{errors.email}</p>}
+                </div>
+              </fieldset>
+              <fieldset className={formStyles.fieldset}>
+                <legend className={formStyles.legend}>Delivery</legend>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="firstName">
+                    First name <RequiredField />
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                  {errors && <p className="error">{errors.firstName}</p>}
+                </div>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="lastName">
+                    Last name <RequiredField />
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                  {errors && <p className="error">{errors.lastName}</p>}
+                </div>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="company">Company</label>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                </div>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="address">
+                    Address <RequiredField />
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                  {errors && <p className="error">{errors.address}</p>}
+                </div>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="address2">Apartment, suite, etc.</label>
+                  <input
+                    type="text"
+                    name="address2"
+                    id="address2"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                </div>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="city">
+                    City <RequiredField />
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                  {errors && <p className="error">{errors.city}</p>}
+                </div>
+                <div className={formStyles.formGroup}>
+                  <label htmlFor="postcode">
+                    Postcode <RequiredField />
+                  </label>
+                  <input
+                    type="text"
+                    name="postcode"
+                    id="postcode"
+                    maxLength={80}
+                    onChange={handleInput}
+                  />
+                  {errors && <p className="error">{errors.postcode}</p>}
+                </div>
+              </fieldset>
+              <button type="submit" className={formStyles.submitButton}>
+                Submit order
+              </button>
+              <Link className={formStyles.link} to={"/"}>
+                Continue shopping
+              </Link>
+            </form>
+          </div>
+          <div className={styles.cartSidebar}>
+            <h3>Cart content</h3>
+            <div className={styles.productList}>
+              {cart.map((p) => (
+                <CartProduct
+                  key={p.product.id}
+                  product={p.product}
+                  count={p.count}
                 />
-                {errors && <p className="error">{errors.email}</p>}
+              ))}
+              <div className={styles.totalContainer}>
+                <span>
+                  <strong>Total</strong>
+                </span>
+                <span>
+                  <strong>{total}</strong>
+                </span>
               </div>
-            </fieldset>
-            <fieldset className={formStyles.fieldset}>
-              <legend className={formStyles.legend}>Delivery</legend>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="firstName">
-                  First name <RequiredField />
-                </label>
-                <input
-                  type="text"
-                  name="firstName"
-                  id="firstName"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-                {errors && <p className="error">{errors.firstName}</p>}
-              </div>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="lastName">
-                  Last name <RequiredField />
-                </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-                {errors && <p className="error">{errors.lastName}</p>}
-              </div>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="company">Company</label>
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-              </div>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="address">
-                  Address <RequiredField />
-                </label>
-                <input
-                  type="text"
-                  name="address"
-                  id="address"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-                {errors && <p className="error">{errors.address}</p>}
-              </div>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="address2">Apartment, suite, etc.</label>
-                <input
-                  type="text"
-                  name="address2"
-                  id="address2"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-              </div>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="city">
-                  City <RequiredField />
-                </label>
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-                {errors && <p className="error">{errors.city}</p>}
-              </div>
-
-              <div className={formStyles.formGroup}>
-                <label htmlFor="postcode">
-                  Postcode <RequiredField />
-                </label>
-                <input
-                  type="text"
-                  name="postcode"
-                  id="postcode"
-                  maxLength={80}
-                  onChange={handleInput}
-                />
-                {errors && <p className="error">{errors.postcode}</p>}
-              </div>
-            </fieldset>
-
-            <button type="submit" className={formStyles.submitButton}>
-              Submit order
-            </button>
-            <Link className={formStyles.link} to={"/signin"}>
-              Continue shopping
-            </Link>
-          </form>
-        </div>
-        <div className={styles.cartSidebar}>
-          <h3>Cart content</h3>
-          <div className={styles.productList}>
-            {cart.map((p) => (
-              <CartProduct
-                key={p.product.id}
-                product={p.product}
-                count={p.count}
-              />
-            ))}
-            <div className={styles.totalContainer}>
-              <span>
-                <strong>Total</strong>
-              </span>
-              <span>
-                <strong>{total}</strong>
-              </span>
             </div>
           </div>
         </div>

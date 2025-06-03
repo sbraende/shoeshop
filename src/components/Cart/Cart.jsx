@@ -68,7 +68,9 @@ const Cart = ({ setDisplayCart }) => {
           <div className={styles.continueShoppingContainer}>
             <button
               className={styles.continueShoppingButton}
-              onClick={() => setDisplayCart(false)}
+              onClick={() => {
+                setDisplayCart(false);
+              }}
             >
               Continue Shopping
             </button>

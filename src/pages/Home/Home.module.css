@@ -7,10 +7,11 @@
 
 .section {
   width: 100%;
+  padding: 0 var(--spacing-small);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
 }
 
 .sectionHeader {
