@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--color-primary-back);
 }
 
 body {
-  /* padding: 0 var(--spacing-small); */
   font-family: Inter, sans-serif;
   background-color: var(--color-light-gray);
   color: var(--color-primary-text);
