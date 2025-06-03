@@ -6,7 +6,7 @@
 .main {
   width: 100%;
   padding-bottom: var(--spacing-large);
-  background-color: var(--color-primary-white);
+  background-color: var(--color-light-gray);
   display: flex;
   flex-direction: column;
   align-items: center;

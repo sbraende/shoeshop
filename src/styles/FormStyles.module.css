@@ -77,6 +77,10 @@
   padding: var(--spacing-small) var(--spacing-medium);
   background-color: var(--color-gradient-color1);
   border-radius: var(--border-radius-medium);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .submitButton:disabled {

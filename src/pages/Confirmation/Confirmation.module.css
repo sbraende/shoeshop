@@ -1,0 +1,21 @@
+.confirmation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.confirmationContent {
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-primary-white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.confirmationDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  align-items: center;
+}

@@ -2,11 +2,16 @@ import formStyles from "../../styles/FormStyles.module.css";
 import styles from "./Checkout.module.css";
 import { getCartContext } from "../../context/cartContext";
 import RequiredField from "../../components/RequiredField/RequiredField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartProduct from "../../components/CartProduct/CartProduct";
 import useCheckoutValidation from "../../hooks/useCheckoutValidation";
 import { useState } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { getAuthContext } from "../../context/authContext";
 import { db } from "../../../firestore.config";
 
@@ -21,9 +26,10 @@ const Checkout = () => {
     city: "",
     postcode: "",
   });
-  const { cart } = getCartContext();
+  const { cart, dispatchCart } = getCartContext();
   const { errors, validateCheckout } = useCheckoutValidation();
   const { user } = getAuthContext();
+  const navigate = useNavigate();
 
   const total = `£${cart.reduce(
     (accumulator, p) => accumulator + p.count * p.product.price,
@@ -57,11 +63,10 @@ const Checkout = () => {
       return;
     }
 
-    console.log("Form approved");
-
+    let firestoreOrderID = "";
     // Store data in Firestore
     try {
-      await addDoc(collection(db, "orders"), {
+      const docRef = await addDoc(collection(db, "orders"), {
         order: cart,
         userId: user.uid || "",
         email: checkoutData.email,
@@ -79,25 +84,26 @@ const Checkout = () => {
         },
         timestamp: serverTimestamp(),
       });
-      console.log("Added order successfully");
+      firestoreOrderID = docRef.id;
     } catch (error) {
       console.log("Error submitting order: ", error);
       alert("Could not submit order, please contact site admin if persistant");
     }
 
-    // Navigate to order complete page / just have a state to complete order?
-
     // Clear cart
-    // dispatchCart({ type: "clearCart" });
-    // setCheckoutData({
-    //   email: "",
-    //   firstName: "",
-    //   lastName: "",
-    //   address: "",
-    //   address2: "",
-    //   city: "",
-    //   postcode: "",
-    // });
+    dispatchCart({ type: "clearCart" });
+    setCheckoutData({
+      email: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      address2: "",
+      city: "",
+      postcode: "",
+    });
+
+    // Navigate to order complete page / just have a state to complete order?
+    navigate(`/checkout/confirmation/${firestoreOrderID}`);
   };
 
   return (

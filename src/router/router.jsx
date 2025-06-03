@@ -16,6 +16,7 @@ import Dashboard from "../pages/MyAccount/DashboardLayout";
 import DashboardLayout from "../pages/MyAccount/DashboardLayout";
 import Overview from "../pages/MyAccount/Overview";
 import Orders from "../pages/MyAccount/Orders";
+import Confirmation from "../pages/Confirmation/Confirmation";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,13 +28,15 @@ export const router = createBrowserRouter(
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route
+        path="/checkout/confirmation/:orderNumber"
+        element={<Confirmation />}
+      />
       <Route path="/products/:productId" element={<ProductPage />} />
-
       <Route path="/myaccount" element={<DashboardLayout />}>
         <Route index element={<Overview />} />
         <Route path="orders" element={<Orders />} />
       </Route>
-
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )

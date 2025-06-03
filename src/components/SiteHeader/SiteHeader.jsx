@@ -30,11 +30,7 @@ const SiteHeader = ({ setDisplayCart }) => {
           </Link>
         ) : (
           <Link to={"/signin"}>
-            <img
-              className={styles.icon}
-              src="/icons/user-circle.svg"
-              alt="Profile"
-            />
+            <img className={styles.icon} src="/icons/user.svg" alt="Profile" />
           </Link>
         )}
 
