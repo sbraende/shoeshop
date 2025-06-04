@@ -19,13 +19,34 @@ import Overview from "../pages/MyAccount/Overview";
 import Orders from "../pages/MyAccount/Orders";
 import Confirmation from "../pages/Confirmation/Confirmation";
 import { getAuthContext } from "../context/authContext";
+import VerifyEmail from "../pages/VerifyEmail/VerifyEmail";
+import { useEffect, useState } from "react";
+import { auth } from "../../auth.config";
 
 const RouteGuard = ({ children }) => {
   const { user, loading } = getAuthContext();
+  const [checkingVerification, setCheckingVerification] = useState(true);
+  const [isVerified, setIsVerified] = useState(null);
 
-  if (loading) return;
+  useEffect(() => {
+    const checkEmailVerification = async () => {
+      if (user) {
+        auth.currentUser.reload();
+        setIsVerified(auth.currentUser.emailVerified);
+      }
+      setCheckingVerification(false);
+    };
+
+    checkEmailVerification();
+  }, [user]);
 
   if (!user) return <Navigate to="/signin" />;
+
+  if (checkingVerification) return null;
+
+  if (!isVerified) return <Navigate to="/verify-email" />;
+
+  if (loading) return;
 
   return children;
 };
@@ -40,6 +61,7 @@ export const router = createBrowserRouter(
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
       {/* Private routes */}
       <Route
         path="/dashboard"

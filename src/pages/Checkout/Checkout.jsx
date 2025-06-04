@@ -218,13 +218,13 @@ const Checkout = () => {
                   />
                   {errors && <p className="error">{errors.postcode}</p>}
                 </div>
+                <button type="submit" className={formStyles.submitButton}>
+                  Submit order
+                </button>
+                <Link className={formStyles.link} to={"/"}>
+                  Continue shopping
+                </Link>
               </fieldset>
-              <button type="submit" className={formStyles.submitButton}>
-                Submit order
-              </button>
-              <Link className={formStyles.link} to={"/"}>
-                Continue shopping
-              </Link>
             </form>
           </div>
           <div className={styles.cartSidebar}>

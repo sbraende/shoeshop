@@ -2,7 +2,10 @@ import styles from "./SignUp.module.css";
 import formStyles from "../../styles/FormStyles.module.css";
 
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "@firebase/auth";
 import { auth } from "../../../auth.config";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../../firestore.config";
@@ -61,9 +64,17 @@ const SignUp = () => {
         timestamp: serverTimestamp(),
       });
 
-      navigate("/");
+      await sendEmailVerification(userCredentials.user);
+      navigate("/verify-email");
 
       console.log("User signed up and Firestore document created.");
+      setSignUpData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     } catch (error) {
       console.error("Sign up failed", error);
       setSignUpError(

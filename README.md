@@ -68,9 +68,14 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 ### AI Assistance – ChatGPT
 
 - Helped set up redirecting from the Search component to the SearchResults page, including how to use `encodeURIComponent` and `URLSearchParams`.
-- Assisted with fixing the `pure function` error I got with using localStorage in cartReducer.
+- Debug the `pure function` error I got with using localStorage in cartReducer.
 - Assisted with structure for MyAccount components.
+- Extra VerifyEmail RouteGuard logic.
 - Assisted with the initial draft of `README.md`.
+
+### Frontend at Høyskolen Kristiania
+
+- Some of the programming patterns and sections of the code has been inspired by what I've learned at Frontend course at Høyskolen Kristiania.
 
 ## License
 

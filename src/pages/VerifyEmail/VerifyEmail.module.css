@@ -1,0 +1,36 @@
+.verifyEmail {
+  width: 100%;
+  padding: var(--spacing-large) var(--spacing-medium);
+
+  display: flex;
+  justify-content: center;
+}
+
+.verifyEmailContent {
+  width: 100%;
+  max-width: var(--layout-secondary-width);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-large) var(--spacing-medium);
+  gap: var(--spacing-medium);
+  background-color: var(--color-primary-white);
+  border-radius: var(--border-radius-large);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 100%;
+  max-width: 300px;
+  color: white;
+  padding: var(--spacing-small) var(--spacing-medium);
+  background-color: var(--color-gradient-color1);
+  border-radius: var(--border-radius-medium);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
