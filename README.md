@@ -6,7 +6,7 @@ This is a final project for the Frontend Development course at Kristiania.
 
 **Live Site:** [https://sbraende-stridelabs.netlify.app](https://sbraende-stridelabs.netlify.app)
 
-![Screenshot of site](/public/images/screenshots/stride-labs.png)
+![Screenshot of site](/public/screenshots/stride-labs.png)
 
 ## Features
 
@@ -61,21 +61,22 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 
 ### Images
 
-- [https://www.salomon.com/](https://www.salomon.com/)
-- [https://unsplash.com/](https://unsplash.com/)
-- [https://iconoir.com/](https://iconoir.com/)
+- [https://www.salomon.com/](https://www.salomon.com/) - Product images
+- [https://unsplash.com/](https://unsplash.com/) - Banner images
+- [https://iconoir.com/](https://iconoir.com/) - Icons
 
 ### AI Assistance – ChatGPT
 
 - Helped set up redirecting from the Search component to the SearchResults page, including how to use `encodeURIComponent` and `URLSearchParams`.
 - Debug the `pure function` error I got with using localStorage in cartReducer.
-- Assisted with structure for MyAccount components.
+- Assisted with structure for MyAccount components and nested routing.
 - Extra VerifyEmail RouteGuard logic.
-- Assisted with the initial draft of `README.md`.
+- Debug findVarientDetails.js.
+- Initial draft of `README.md`.
 
 ### Frontend at Høyskolen Kristiania
 
-- Some of the programming patterns and sections of the code has been inspired by what I've learned at Frontend course at Høyskolen Kristiania.
+- Some of the programming patterns and sections of the code have been inspired by the Frontend course at Høyskolen Kristiania.
 
 ## License
 
@@ -83,4 +84,4 @@ This project is licensed under the [MIT License](./LICENSE). You’re free to us
 
 ## Assigment notes
 
-- Reza has approved GeminiAI as external API.
+- Reza has approved Gemini as external API.

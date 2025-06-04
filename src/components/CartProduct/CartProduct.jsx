@@ -63,7 +63,7 @@ const CartProduct = ({ p, setDisplayCart }) => {
             count={p.count}
             handleDecrement={handleDecrement}
           />
-          <p>{`£${p.count * p.product.price}`}</p>
+          <p>{`£${(p.count * p.product.price).toFixed(2)}`}</p>
         </div>
       </div>
     </div>

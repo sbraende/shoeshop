@@ -41,7 +41,7 @@ const Overview = () => {
             >
               Logout
             </button>
-            <span>)</span>
+            <span>{")"}</span>
           </>
         ) : (
           <p>Redirecting to 'sign in' page</p>

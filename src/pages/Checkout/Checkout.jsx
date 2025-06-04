@@ -26,10 +26,9 @@ const Checkout = () => {
   const { user } = getAuthContext();
   const navigate = useNavigate();
 
-  const total = `£${cart.reduce(
-    (accumulator, p) => accumulator + p.count * p.product.price,
-    0
-  )}`;
+  const total = `£${cart
+    .reduce((accumulator, p) => accumulator + p.count * p.product.price, 0)
+    .toFixed(2)}`;
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -82,7 +81,7 @@ const Checkout = () => {
       firestoreOrderID = docRef.id;
     } catch (error) {
       console.log("Error submitting order: ", error);
-      alert("Could not submit order, please contact site admin if persistant");
+      alert("Could not submit order, try again");
     }
 
     // Clear cart
@@ -97,7 +96,6 @@ const Checkout = () => {
       postcode: "",
     });
 
-    // Navigate to order complete page / just have a state to complete order?
     navigate(`/checkout/confirmation/${firestoreOrderID}`);
   };
 
@@ -127,6 +125,7 @@ const Checkout = () => {
                     id="email"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.email}
                   />
                   {errors && <p className="error">{errors.email}</p>}
                 </div>
@@ -143,6 +142,7 @@ const Checkout = () => {
                     id="firstName"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.firstName}
                   />
                   {errors && <p className="error">{errors.firstName}</p>}
                 </div>
@@ -156,6 +156,7 @@ const Checkout = () => {
                     id="lastName"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.lastName}
                   />
                   {errors && <p className="error">{errors.lastName}</p>}
                 </div>
@@ -167,6 +168,7 @@ const Checkout = () => {
                     id="company"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.company}
                   />
                 </div>
                 <div className={formStyles.formGroup}>
@@ -179,6 +181,7 @@ const Checkout = () => {
                     id="address"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.address}
                   />
                   {errors && <p className="error">{errors.address}</p>}
                 </div>
@@ -190,6 +193,7 @@ const Checkout = () => {
                     id="address2"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.address2}
                   />
                 </div>
                 <div className={formStyles.formGroup}>
@@ -202,6 +206,7 @@ const Checkout = () => {
                     id="city"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.city}
                   />
                   {errors && <p className="error">{errors.city}</p>}
                 </div>
@@ -215,6 +220,7 @@ const Checkout = () => {
                     id="postcode"
                     maxLength={80}
                     onChange={handleInput}
+                    value={checkoutData.postcode}
                   />
                   {errors && <p className="error">{errors.postcode}</p>}
                 </div>

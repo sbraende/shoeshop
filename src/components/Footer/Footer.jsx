@@ -12,8 +12,12 @@ const Footer = () => {
             gather points.
           </p>
           <div className={styles.footerButtons}>
-            <Link className={styles.footerButton}>Sign up</Link>
-            <Link className={styles.footerButton}>Log in</Link>
+            <Link className={styles.footerButton} to={"/signup"}>
+              Sign up
+            </Link>
+            <Link className={styles.footerButton} to={"/signin"}>
+              Log in
+            </Link>
           </div>
         </div>
         <div className={styles.linksContainer}>

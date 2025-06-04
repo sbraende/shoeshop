@@ -35,10 +35,9 @@ const ProductPage = () => {
       </div>
       <div className={styles.productDetailsContainer}>
         <h2>{product.name}</h2>
-        <h3>£{product.price}</h3>
+        <h3>{`£${product.price.toFixed(2)}`}</h3>
         <p>
-          Tax Included. <Link to={"/policies/shipping-policy"}>Shipping</Link>{" "}
-          calcualted at checkout.
+          Tax Included. <Link>Shipping</Link> calcualted at checkout.
         </p>
         <div>
           {product.variantProperties.map((currentVariantProperty) => (

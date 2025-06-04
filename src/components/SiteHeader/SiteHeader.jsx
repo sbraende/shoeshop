@@ -17,23 +17,20 @@ const SiteHeader = ({ setDisplayCart }) => {
     <header className={styles.siteHeader}>
       <div className={styles.logoContainer}>
         <Link className={styles.logoLink} to={"/"}>
-          <img className={styles.logoImg} src="/logo/stride-labs-logo.png" />
+          <img
+            className={styles.logoImg}
+            src="/logo/stride-labs-logo.png"
+            alt="Stride Labs logo"
+          />
         </Link>
       </div>
       <div className={styles.searchContainer}>
         <Search />
       </div>
       <div className={styles.navigationItemsContainer}>
-        {user ? (
-          <Link to={"/myaccount"}>
-            <img className={styles.icon} src="/icons/user.svg" alt="Profile" />
-          </Link>
-        ) : (
-          <Link to={"/signin"}>
-            <img className={styles.icon} src="/icons/user.svg" alt="Profile" />
-          </Link>
-        )}
-
+        <Link to={user ? "/myaccount" : "/signin"}>
+          <img className={styles.icon} src="/icons/user.svg" alt="Profile" />
+        </Link>
         <button
           className={styles.cartButton}
           onClick={() => setDisplayCart(true)}
@@ -46,11 +43,6 @@ const SiteHeader = ({ setDisplayCart }) => {
           {itemsInCartTotal > 0 ? <span>{itemsInCartTotal}</span> : ""}
         </button>
       </div>
-      <nav className={styles.navContainer}>
-        <NavLink className={styles.navLink}>SHOES</NavLink>
-        <NavLink className={styles.navLink}>CLOTHING</NavLink>
-        <NavLink className={styles.navLink}>ACCESSORIES</NavLink>
-      </nav>
     </header>
   );
 };

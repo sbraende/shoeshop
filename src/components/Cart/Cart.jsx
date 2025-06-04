@@ -6,11 +6,9 @@ import Button from "../Button/Button";
 import { getCartContext } from "../../context/cartContext";
 
 const Cart = ({ setDisplayCart }) => {
-  // Hooks
   const { cart } = getCartContext();
   const navigate = useNavigate();
 
-  // Logic
   // Turn scrolling off on <body>
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -24,12 +22,10 @@ const Cart = ({ setDisplayCart }) => {
     setDisplayCart(false);
   };
 
-  const total = `£${cart.reduce(
-    (accumulator, p) => accumulator + p.count * p.product.price,
-    0
-  )}`;
+  const total = `£${cart
+    .reduce((accumulator, p) => accumulator + p.count * p.product.price, 0)
+    .toFixed(2)}`;
 
-  // JSX-markup
   return (
     <div className={styles.cart}>
       <div className={styles.cartContent}>
