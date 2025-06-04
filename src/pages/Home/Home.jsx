@@ -5,10 +5,13 @@ import shoeList from "../../data/shoeData";
 const Home = () => {
   return (
     <div className={styles.home}>
-      <section
-        className={`${styles.section} ${styles.sectionSearch}`}
-      ></section>
-
+      <div className={styles.banner}>
+        <img
+          className={styles.bannerImage}
+          src="/images/section/search/isaac-wendland-YbubEOFyKZU-unsplash.jpg"
+          alt=""
+        />
+      </div>
       <section className={styles.section}>
         <ProductList shoeList={shoeList} title={"Popular now"} />
       </section>

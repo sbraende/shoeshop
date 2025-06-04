@@ -7,6 +7,8 @@
 }
 
 .dashboardContainer {
+  width: 100%;
+  max-width: var(--layout-secondary-width);
   display: flex;
   padding: var(--spacing-large) var(--spacing-medium);
   gap: var(--spacing-medium);
@@ -23,17 +25,30 @@
   gap: var(--spacing-medium);
 }
 
-.dashboardButton {
+@media screen and (max-width: 600px) {
+  .dashboardContainer {
+    min-width: 200px;
+  }
+
+  .buttonText {
+    display: none;
+  }
+}
+
+.button {
   display: flex;
+  padding: var(--spacing-x-small) var(--spacing-xx-small);
+  border-radius: var(--border-radius-small);
   gap: var(--spacing-small);
   text-decoration: none;
   align-items: center;
 }
 
-.dashboardButtonActive {
+.buttonActive {
   font-weight: 600;
+  border: 2px solid var(--color-medium-gray);
 }
 
-.dashboardButton span {
+.button span {
   color: var(--color-dark-gray);
 }

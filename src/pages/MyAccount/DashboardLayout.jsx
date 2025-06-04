@@ -1,6 +1,4 @@
 import styles from "./DashboardLayout.module.css";
-
-import { auth } from "../../../auth.config";
 import { NavLink, Outlet } from "react-router-dom";
 import useSignOut from "../../hooks/useSignOut";
 
@@ -16,27 +14,27 @@ const DashboardLayout = () => {
             end
             className={({ isActive }) =>
               isActive
-                ? `${styles.dashboardButtonActive} ${styles.dashboardButton}`
-                : styles.dashboardButton
+                ? `${styles.buttonActive} ${styles.button}`
+                : styles.button
             }
           >
             <img src="/icons/user.svg" alt="user" />
-            <span>My Account</span>
+            <span className={styles.buttonText}>My Account</span>
           </NavLink>
           <NavLink
             to="/myaccount/orders"
             className={({ isActive }) =>
               isActive
-                ? `${styles.dashboardButtonActive} ${styles.dashboardButton}`
-                : styles.dashboardButton
+                ? `${styles.buttonActive} ${styles.button}`
+                : styles.button
             }
           >
             <img src="/icons/package.svg" alt="orders" />
-            <span>Orders</span>
+            <span className={styles.buttonText}>Orders</span>
           </NavLink>
-          <button className={styles.dashboardButton} onClick={signOutUser}>
+          <button className={styles.button} onClick={signOutUser}>
             <img src="/icons/log-out.svg" alt="orders" />
-            <span>Sign out</span>
+            <span className={styles.buttonText}>Sign out</span>
           </button>
         </nav>
         <main className={styles.dashboardContent}>
