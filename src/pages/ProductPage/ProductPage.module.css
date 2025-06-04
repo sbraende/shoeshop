@@ -37,9 +37,6 @@
   gap: var(--spacing-x-small);
 }
 
-.sizeList li {
-}
-
 .variationLinkContainer {
   display: flex;
   gap: var(--spacing-xx-small);

@@ -3,6 +3,10 @@ import ProductList from "../../components/ProductList/ProductList";
 import shoeList from "../../data/shoeData";
 
 const Home = () => {
+  const popularShoesList = [...shoeList]
+    .sort((a, b) => b.meta.views - a.meta.views)
+    .slice(0, 4);
+
   return (
     <div className={styles.home}>
       <div className={styles.banner}>
@@ -13,7 +17,8 @@ const Home = () => {
         />
       </div>
       <section className={styles.section}>
-        <ProductList shoeList={shoeList} title={"Popular now"} />
+        <ProductList shoeList={popularShoesList} title={"Popular now"} />
+        <ProductList shoeList={shoeList} title={"All shoes"} />
       </section>
     </div>
   );

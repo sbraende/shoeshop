@@ -36,27 +36,35 @@ const SearchResults = () => {
       `;
 
     const getAiRecommendedProduct = async () => {
-      const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-          responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-              response: { type: Type.STRING },
-              shoeId: { type: Type.STRING },
+      try {
+        const response = await ai.models.generateContent({
+          model: "gemini-2.0-flash",
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                response: { type: Type.STRING },
+                shoeId: { type: Type.STRING },
+              },
+              propertyOrdering: ["response", "shoeId"],
             },
-            propertyOrdering: ["response", "shoeId"],
           },
-        },
-      });
+        });
 
-      const responseData = JSON.parse(response.text);
-      if (responseData.shoeId === "null") responseData.shoeId = null;
+        const responseData = JSON.parse(response.text);
+        if (responseData.shoeId === "null") responseData.shoeId = null;
 
-      setAiResults(responseData);
-      // console.log(responseData);
+        setAiResults(responseData);
+      } catch (error) {
+        console.error("AI response falied: ", error);
+        setAiResults({
+          response:
+            "We're having trouble generating a recommendation at the moment. Please try again later or browse our collection manually.",
+          shoeId: null,
+        });
+      }
     };
     getAiRecommendedProduct();
   }, [userQuery]);
