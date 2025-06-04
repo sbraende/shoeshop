@@ -232,8 +232,8 @@ const Checkout = () => {
             <div className={styles.productList}>
               {cart.map((p) => (
                 <CartProduct
-                  key={p.product.id}
-                  product={p.product}
+                  key={`${p.product.id}${p.variantId}`}
+                  p={p}
                   count={p.count}
                 />
               ))}

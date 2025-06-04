@@ -2,41 +2,56 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CartProduct.module.css";
 import Counter from "../Counter/Counter";
 import { getCartContext } from "../../context/cartContext";
+import findVariantDetails from "../../utilities/findVariantDetails";
 
-const CartProduct = ({ product, count, setDisplayCart }) => {
+const CartProduct = ({ p, setDisplayCart }) => {
   const { dispatchCart } = getCartContext();
   const navigate = useNavigate();
 
   const handleProductLink = () => {
-    navigate(`/products/${product.id}`);
+    navigate(`/products/${p.product.id}?variant=${p.variantId}`);
     setDisplayCart(false);
   };
 
   const handleRemoveProduct = () => {
-    dispatchCart({ type: "removedProduct", payload: product });
+    dispatchCart({
+      type: "removedProduct",
+      payload: { product: p.product, variantId: p.variantId },
+    });
   };
 
   const handleDecrement = () => {
-    dispatchCart({ type: "decrementProductCount", payload: product });
+    dispatchCart({
+      type: "decrementProductCount",
+      payload: { product: p.product, variantId: p.variantId },
+    });
   };
 
   const handleIncrement = () => {
-    dispatchCart({ type: "incrementProductCount", payload: product });
+    dispatchCart({
+      type: "incrementProductCount",
+      payload: { product: p.product, variantId: p.variantId },
+    });
   };
+
+  const variantDetails = findVariantDetails(p, p.variantId);
 
   return (
     <div className={styles.productContainer}>
       <button className={styles.imageContainer} onClick={handleProductLink}>
-        <img src={product.imageURL} alt="Product image" />
+        <img src={p.product.imageURL} alt="Product image" />
       </button>
       <div className={styles.productDetailsContainer}>
         <div className={styles.productInfoContainer}>
           <div className={styles.productInfoTextContainer}>
             <button className={styles.productName} onClick={handleProductLink}>
-              {`${product.brand} ${product.name}`}
+              {`${p.product.brand} ${p.product.name}`}
             </button>
-            <p>shoe size/color</p>
-            <p>size</p>
+            {Object.entries(variantDetails).map(([property, value]) => (
+              <p key={property}>
+                {property}: {value}
+              </p>
+            ))}
           </div>
           <button className={styles.deleteButton} onClick={handleRemoveProduct}>
             <img src="/icons/trash.svg" alt="Delete icon" />
@@ -45,10 +60,10 @@ const CartProduct = ({ product, count, setDisplayCart }) => {
         <div className={styles.productCountContainer}>
           <Counter
             handleIncrement={handleIncrement}
-            count={count}
+            count={p.count}
             handleDecrement={handleDecrement}
           />
-          <p>{`£${count * product.price}`}</p>
+          <p>{`£${p.count * p.product.price}`}</p>
         </div>
       </div>
     </div>

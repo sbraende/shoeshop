@@ -1,5 +1,6 @@
 const shoeList = [
   {
+    productType: "shoe",
     id: "Salomon-Genesis",
     brand: "Salomon",
     name: "Genesis",
@@ -15,8 +16,25 @@ const shoeList = [
     description:
       "No matter the trail, the Genesis is your go-to shoe for any adventure. Designed to deliver an unmatched running experience, it combines dynamism, comfort, and precision—no matter the terrain. With its durable Matryx® upper and a high-grip outsole built for the toughest conditions, you can count on the Genesis to keep you confident and secure. Best for Mixed terrain, Rocky, Durable, Stable, Support, Versatile, 2-3 runs per week",
     price: 140,
+    meta: { views: 2000 },
+    variant: [
+      {
+        id: "ffe05f1d",
+        size: "39",
+        variantImageURL: "",
+        inventory: 30,
+      },
+      {
+        id: "ffe05f12",
+        size: "40",
+        variantImageURL: "",
+        inventory: 50,
+      },
+    ],
+    variantProperties: ["size"],
   },
   {
+    productType: "shoe",
     id: "Salomon-X-Ultra-5",
     brand: "Salomon",
     name: "X Ultra 5",
@@ -32,8 +50,25 @@ const shoeList = [
     description:
       "The X Ultra 5 is your dependable, confidence-boosting hiking ally. Lightweight yet stable, it's ideal for both ascents and descents on varied terrain. Features an ultra-durable Matryx®️ upper, Contagrip outsole for superior traction, and an ankle-height collar tailored for long-lasting comfort. Built for wet, rocky, or muddy trails.",
     price: 150,
+    meta: { views: 1500 },
+    variant: [
+      {
+        id: "aklsdf8",
+        size: "41",
+        variantImageURL: "",
+        inventory: 20,
+      },
+      {
+        id: "aklsdfr58",
+        size: "42",
+        variantImageURL: "",
+        inventory: 35,
+      },
+    ],
+    variantProperties: ["size"],
   },
   {
+    productType: "shoe",
     id: "Salomon-XT-Whisper",
     brand: "Salomon",
     name: "XT-Whisper",
@@ -45,14 +80,29 @@ const shoeList = [
     cushioning: "minimal",
     weeklyUse: "Casual wear, Light runs",
     imageURL:
-      "https://res.cloudinary.com/dyabzrdmr/image/upload/v1748598093/salomon-xt-whisper_hehbdf.webp",
+      "https://res.cloudinary.com/dyabzrdmr/image/upload/v1749029118/salomon-xt-whisper_hehbdf.webp",
     description:
       "The XT-Whisper blends iconic Salomon trail DNA with modern street aesthetics. With its wavy Sensifit™ upper, Quicklace system, and lightweight construction, it delivers confident grip and an edgy silhouette. Ideal for everyday wear or light trail explorations.",
     price: 130,
-    weight: 290,
-    drop: 11,
+    meta: { views: 900 },
+    variant: [
+      {
+        id: "123",
+        size: "38",
+        variantImageURL: "",
+        inventory: 25,
+      },
+      {
+        id: "1234",
+        size: "39",
+        variantImageURL: "",
+        inventory: 30,
+      },
+    ],
+    variantProperties: ["size"],
   },
   {
+    productType: "shoe",
     id: "Salomon-Aero-Glide-3",
     brand: "Salomon",
     name: "Aero Glide 3",
@@ -68,8 +118,22 @@ const shoeList = [
     description:
       "Aero Glide 3 redefines your run with energy-packed cushion and game-changing comfort. This everyday trainer features a high stack foam and a seamless upper construction that fits like a glove, bringing dynamic, cushioned strides from mile one to mile end.",
     price: 145,
-    weight: 245,
-    drop: 8,
+    meta: { views: 1200 },
+    variant: [
+      {
+        id: "1253",
+        size: "40",
+        variantImageURL: "",
+        inventory: 40,
+      },
+      {
+        id: "12673",
+        size: "41",
+        variantImageURL: "",
+        inventory: 28,
+      },
+    ],
+    variantProperties: ["size"],
   },
 ];
 

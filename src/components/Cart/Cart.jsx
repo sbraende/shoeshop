@@ -42,9 +42,8 @@ const Cart = ({ setDisplayCart }) => {
         <div className={styles.productList}>
           {cart.map((p) => (
             <CartProduct
-              key={p.product.id}
-              product={p.product}
-              count={p.count}
+              key={crypto.randomUUID()}
+              p={p}
               setDisplayCart={setDisplayCart}
             />
           ))}

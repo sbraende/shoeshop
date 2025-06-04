@@ -40,15 +40,23 @@
 .sizeList li {
 }
 
-.sizeList li button {
+.variationLinkContainer {
+  display: flex;
+  gap: var(--spacing-xx-small);
+  flex-wrap: wrap;
+}
+
+.variationLink {
+  width: 100px;
   display: inline-block;
   padding: var(--spacing-x-small) var(--spacing-medium);
   border: 1px solid var(--color-mediumDark-gray);
   border-radius: 4rem;
-}
-
-.sizeList li .active {
-  border: 2px solid var(--color-primary-back);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-primary-back);
 }
 
 .descriptionText {
@@ -59,4 +67,8 @@
   .productPage {
     flex-direction: column;
   }
+}
+
+.active {
+  border: 2px solid var(--color-primary-back);
 }
