@@ -16,7 +16,7 @@ const shoeList = [
     description:
       "No matter the trail, the Genesis is your go-to shoe for any adventure. Designed to deliver an unmatched running experience, it combines dynamism, comfort, and precision—no matter the terrain. With its durable Matryx® upper and a high-grip outsole built for the toughest conditions, you can count on the Genesis to keep you confident and secure. Best for Mixed terrain, Rocky, Durable, Stable, Support, Versatile, 2-3 runs per week",
     price: 140,
-    meta: { views: 2000 },
+    meta: { views: 500 },
     variant: [
       {
         id: "qwre39",
@@ -62,7 +62,7 @@ const shoeList = [
     description:
       "The X Ultra 5 is your dependable, confidence-boosting hiking ally. Lightweight yet stable, it's ideal for both ascents and descents on varied terrain. Features an ultra-durable Matryx®️ upper, Contagrip outsole for superior traction, and an ankle-height collar tailored for long-lasting comfort. Built for wet, rocky, or muddy trails.",
     price: 150,
-    meta: { views: 1500 },
+    meta: { views: 400 },
     variant: [
       {
         id: "41somo",
