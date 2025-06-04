@@ -72,6 +72,7 @@ You can view the project prototype here: [Figma Link](https://www.figma.com/desi
 - Assisted with structure for MyAccount components and nested routing.
 - Extra VerifyEmail RouteGuard logic.
 - Debug findVarientDetails.js.
+- `_redirects` file for handelig file-based routes on Netlify.
 - Initial draft of `README.md`.
 
 ### Frontend at Høyskolen Kristiania
