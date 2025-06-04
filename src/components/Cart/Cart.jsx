@@ -1,6 +1,6 @@
 import styles from "./Cart.module.css";
 import CartProduct from "../CartProduct/CartProduct";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { getCartContext } from "../../context/cartContext";
@@ -23,7 +23,11 @@ const Cart = ({ setDisplayCart }) => {
   };
 
   const total = `£${cart
-    .reduce((accumulator, p) => accumulator + p.count * p.product.price, 0)
+    .reduce(
+      (accumulator, cartItem) =>
+        accumulator + cartItem.count * cartItem.product.price,
+      0
+    )
     .toFixed(2)}`;
 
   return (
@@ -36,10 +40,10 @@ const Cart = ({ setDisplayCart }) => {
           </button>
         </header>
         <div className={styles.productList}>
-          {cart.map((p) => (
+          {cart.map((cartItem) => (
             <CartProduct
               key={crypto.randomUUID()}
-              p={p}
+              cartItem={cartItem}
               setDisplayCart={setDisplayCart}
             />
           ))}

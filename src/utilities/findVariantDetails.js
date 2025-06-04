@@ -1,10 +1,12 @@
-const findVariantDetails = (p, variantId) => {
+const findVariantDetails = (cartItem, variantId) => {
   const details = {};
-  const matchedVariant = p.product.variant.find((v) => v.id === p.variantId);
+  const matchedVariant = cartItem.product.variant.find(
+    (variantOption) => variantOption.id === cartItem.variantId
+  );
 
   if (!matchedVariant) return details;
 
-  p.product.variantProperties.forEach((property) => {
+  cartItem.product.variantProperties.forEach((property) => {
     details[property] = matchedVariant[property];
   });
 

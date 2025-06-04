@@ -34,8 +34,8 @@ const Orders = () => {
     getOrders();
   }, [user]);
 
-  const displayOrderDetails = (o) => {
-    const brand = o.order.map((order) => (
+  const displayOrderDetails = (order) => {
+    const brand = order.order.map((order) => (
       <p
         key={crypto.randomUUID()}
       >{`${order.count} x ${order.product.brand} ${order.product.name}`}</p>
@@ -47,17 +47,17 @@ const Orders = () => {
     <div className={styles.orders}>
       <h2>Orders</h2>
       <ul className={styles.ordersList}>
-        {userOrders.map((o) => {
+        {userOrders.map((order) => {
           return (
-            <li key={String(o.orderNumber)} className={styles.ordersItem}>
+            <li key={String(order.orderNumber)} className={styles.ordersItem}>
               <img src={null} alt="" />
               <p>
-                <strong>Order number:</strong> {o.orderNumber}
+                <strong>Order number:</strong> {order.orderNumber}
               </p>
-              <p>Staus: {o.status}</p>
+              <p>Staus: {order.status}</p>
               <p>Cart: </p>
-              {displayOrderDetails(o)}
-              <span>Order total: {o.total}</span>
+              {displayOrderDetails(order)}
+              <span>Order total: {order.total}</span>
             </li>
           );
         })}

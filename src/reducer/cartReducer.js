@@ -2,17 +2,17 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case "addedProduct": {
       const itemInCart = state.find(
-        (p) =>
-          p.product.id === action.payload.product.id &&
-          p.variantId === action.payload.variantId
+        (cartItem) =>
+          cartItem.product.id === action.payload.product.id &&
+          cartItem.variantId === action.payload.variantId
       );
 
       if (itemInCart) {
-        return state.map((p) =>
-          p.product.id === action.payload.product.id &&
-          p.variantId === action.payload.variantId
-            ? { ...p, count: p.count + 1 }
-            : p
+        return state.map((cartItem) =>
+          cartItem.product.id === action.payload.product.id &&
+          cartItem.variantId === action.payload.variantId
+            ? { ...cartItem, count: cartItem.count + 1 }
+            : cartItem
         );
       }
 
@@ -28,43 +28,43 @@ const cartReducer = (state, action) => {
 
     case "removedProduct": {
       return state.filter(
-        (p) =>
+        (cartItem) =>
           !(
-            p.product.id === action.payload.product.id &&
-            p.variantId === action.payload.variantId
+            cartItem.product.id === action.payload.product.id &&
+            cartItem.variantId === action.payload.variantId
           )
       );
     }
 
     case "incrementProductCount": {
-      return state.map((p) =>
-        p.product.id === action.payload.product.id &&
-        p.variantId === action.payload.variantId
-          ? { ...p, count: p.count + 1 }
-          : p
+      return state.map((cartItem) =>
+        cartItem.product.id === action.payload.product.id &&
+        cartItem.variantId === action.payload.variantId
+          ? { ...cartItem, count: cartItem.count + 1 }
+          : cartItem
       );
     }
 
     case "decrementProductCount": {
       const itemInCart = state.find(
-        (p) =>
-          p.product.id === action.payload.product.id &&
-          p.variantId === action.payload.variantId
+        (cartItem) =>
+          cartItem.product.id === action.payload.product.id &&
+          cartItem.variantId === action.payload.variantId
       );
 
       if (itemInCart && itemInCart.count > 1) {
-        return state.map((p) =>
-          p.product.id === action.payload.product.id &&
-          p.variantId === action.payload.variantId
-            ? { ...p, count: p.count - 1 }
-            : p
+        return state.map((cartItem) =>
+          cartItem.product.id === action.payload.product.id &&
+          cartItem.variantId === action.payload.variantId
+            ? { ...cartItem, count: cartItem.count - 1 }
+            : cartItem
         );
       } else {
         return state.filter(
-          (p) =>
+          (cartItem) =>
             !(
-              p.product.id === action.payload.product.id &&
-              p.variantId === action.payload.variantId
+              cartItem.product.id === action.payload.product.id &&
+              cartItem.variantId === action.payload.variantId
             )
         );
       }

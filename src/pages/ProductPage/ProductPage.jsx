@@ -12,7 +12,7 @@ const ProductPage = () => {
 
   const { dispatchCart } = getCartContext();
 
-  const product = shoeList.find((p) => p.id === productId);
+  const product = shoeList.find((product) => product.id === productId);
 
   const handleBuyButton = (e) => {
     e.preventDefault();

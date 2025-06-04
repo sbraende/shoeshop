@@ -27,7 +27,11 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const total = `£${cart
-    .reduce((accumulator, p) => accumulator + p.count * p.product.price, 0)
+    .reduce(
+      (accumulator, cartItem) =>
+        accumulator + cartItem.count * cartItem.product.price,
+      0
+    )
     .toFixed(2)}`;
 
   const handleInput = (e) => {
@@ -90,6 +94,7 @@ const Checkout = () => {
       email: "",
       firstName: "",
       lastName: "",
+      company: "",
       address: "",
       address2: "",
       city: "",
@@ -236,11 +241,10 @@ const Checkout = () => {
           <div className={styles.cartSidebar}>
             <h3>Cart content</h3>
             <div className={styles.productList}>
-              {cart.map((p) => (
+              {cart.map((cartItem) => (
                 <CartProduct
-                  key={`${p.product.id}${p.variantId}`}
-                  p={p}
-                  count={p.count}
+                  key={`${cartItem.product.id}${cartItem.variantId}`}
+                  cartItem={cartItem}
                 />
               ))}
               <div className={styles.totalContainer}>
